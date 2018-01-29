@@ -1,0 +1,50 @@
+---
+title: "Unit 03 Assignment"
+author: "David Stroud"
+date: "1/29/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Questions
+##1. GitHub Cloning
+
+davidstroud (master) PublicData
+$ git clone https://github.com/awesomedata/awesome-public-datasets.git
+Cloning into 'awesome-public-datasets'...
+remote: Counting objects: 1427, done.
+remote: Total 1427 (delta 0), reused 0 (delta 0), pack-reused 1427
+Receiving objects: 100% (1427/1427), 497.07 KiB | 2.28 MiB/s, done.
+Resolving deltas: 100% (830/830), done.
+davidstroud (master) PublicData
+$ ls
+awesome-public-datasets
+davidstroud (master) PublicData
+$ cd awesome-public-datasets/
+davidstroud (master) awesome-public-datasets
+
+##2. Data Summary
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
