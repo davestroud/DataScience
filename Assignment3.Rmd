@@ -28,6 +28,13 @@ davidstroud (master) awesome-public-datasets
 
 ##2. Data Summary
 
+```{r}
+# a. Read in titantic data set and assing to df
+library(readr)
+df <- read_csv("PublicData/awesome-public-datasets/Datasets/titanic.csv")
+```
+
+
 
 ## R Markdown
 
