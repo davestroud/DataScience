@@ -38,8 +38,8 @@ df <- read_csv("PublicData/awesome-public-datasets/Datasets/titanic.csv")
 
 ```{r}
 # b. Output the respective count of females and males aboard the Titanic. Plot the frequency of females and males.  Be sure to give an accurate title and label the axes.
-
-
+df$Sex <- as.factor(df$Sex)
+summary(df$Sex)
 ```
 
 ```{r}
@@ -54,17 +54,22 @@ sapply(MyList, mean, na.rm=TRUE)
 
 ```{r}
 library(readr)
+# Import sleep data
 sleep <- read_csv("sleep_data_01.csv")
 
+# Create SleepData function
 SleepData <- function(report) {
+  # a. Create objects for the median Age, the minimum and maximum Duration of sleep,   and the mean and standard deviation of the Rosenberg Self Esteem scale (RSES).  
   AgeMed <- median(sleep$Age,na.rm = TRUE)
   DurMin <- min(sleep$Duration,na.rm = TRUE)
   DurMax <- max(sleep$Duration,na.rm = TRUE)
   RsesAvg <-mean(sleep$RSES,na.rm=TRUE)
   RsesSd <-sd(sleep$RSES,na.rm=TRUE)
   
+  # b. Create a data.frame object called report: 
   report <- data.frame(AgeMed/5,RsesAvg/5,RsesSd/5,(DurMax-DurMin))
   
+ # c.	Change the column names of this data.frame to MedianAge, SelfEsteem, SE_SD,     and DurationRange
   colnames(report)[1] <- "MedianAge"
   colnames(report)[2] <- "SelfEsteem"
   colnames(report)[3] <- "SE_SD"
@@ -72,6 +77,7 @@ SleepData <- function(report) {
   return(report)
 }
 
+# e. Run sleep data function to show output
 SleepData()
 
 ```
@@ -81,12 +87,3 @@ SleepData()
 
 
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
