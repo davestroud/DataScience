@@ -10,7 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #Questions
-##1. GitHub Cloning
+##1. GitHub Cloning  
+* #### Using Git, clone the following GitHub repository to your local machine: https://github.com/caesar0301/awesome-public-datasets.  
 
 >davidstroud (master) PublicData  
 $ git clone https://github.com/awesomedata/awesome-public-datasets.git  
@@ -47,6 +48,36 @@ MyList <- list(df$Age,df$Fare,df$Survived)
 sapply(MyList, mean, na.rm=TRUE)
 
 ```
+
+
+## 3. Function Building
+
+```{r}
+library(readr)
+sleep <- read_csv("sleep_data_01.csv")
+
+SleepData <- function(report) {
+  AgeMed <- median(sleep$Age,na.rm = TRUE)
+  DurMin <- min(sleep$Duration,na.rm = TRUE)
+  DurMax <- max(sleep$Duration,na.rm = TRUE)
+  RsesAvg <-mean(sleep$RSES,na.rm=TRUE)
+  RsesSd <-sd(sleep$RSES,na.rm=TRUE)
+  
+  report <- data.frame(AgeMed/5,RsesAvg/5,RsesSd/5,(DurMax-DurMin))
+  
+  colnames(report)[1] <- "MedianAge"
+  colnames(report)[2] <- "SelfEsteem"
+  colnames(report)[3] <- "SE_SD"
+  colnames(report)[4] <- "DurationRange"
+  return(report)
+}
+
+SleepData()
+
+```
+
+
+
 
 
 
