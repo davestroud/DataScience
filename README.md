@@ -17,3 +17,7 @@ RStudio
 
 ### Authors  
 David Stroud ~ david@greymatter-analytics.com
+
+### Acknowledgements
+R package of data and code behind the stories and interactives at FiveThirtyEight
+<https://github.com/rudeboybert>
