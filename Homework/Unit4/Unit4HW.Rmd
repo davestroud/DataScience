@@ -33,6 +33,16 @@ colnames(df)
 colnames(df)
 ncol(df)
 
+# b. Generate a count of each unique major_category in the data frame
+library(plyr)
+major_count <- count(df$major_category)
+major_count
+
+#c. 
+#barplot(major_count$freq ~ major_count$x)
+
+# d. Write fivethirtyeight data to csv file
+write.csv(df, file="/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/college_recent_grads.csv")
 ```
 
 
