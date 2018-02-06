@@ -8,25 +8,41 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-### 1. FiveThirtyEightData
 
+### 1. FiveThirtyEightData
 ```{r}
 # a. Install the fivethirtyeight package
 library(fivethirtyeight)
 
 # b. Assign eighteenth data set to object 'df'
 df <- fivethirtyeight::college_recent_grads
+
 # c. Use a more detailed list of the data sets to write out the URL in a comment to the related news story 
 vignette("fivethirtyeight", package = "fivethirtyeight")
+
+# d. Give dimensions and column names of df
+dim(df)
+colnames(df)
 
 
 ```
 
+### 2. Data Summary
+```{r}
+# a. Give column names and count the number of columns
+colnames(df)
+ncol(df)
+
+```
+
+
+
+
 ### 3. Codebook  
 #### a. Built repository on Github for SMU MSDS homework  
 #### b. README file created 
-### c. 
-### d. <https://github.com/davestroud/DataScience>
+#### c. 
+#### d. <https://github.com/davestroud/DataScience>
 
 ## R Markdown
 
