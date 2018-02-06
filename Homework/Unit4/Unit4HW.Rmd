@@ -19,6 +19,7 @@ df <- fivethirtyeight::college_recent_grads
 
 # c. Use a more detailed list of the data sets to write out the URL in a comment to the related news story 
 vignette("fivethirtyeight", package = "fivethirtyeight")
+# URL is http://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/
 
 # d. Give dimensions and column names of df
 dim(df)
@@ -52,7 +53,7 @@ write.csv(df, file="/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Home
 ### 3. Codebook  
 #### a. Built repository on Github for SMU MSDS homework  
 #### b. README file created 
-#### c. All
+#### c. RMarkdown, HTML file and data from 'fivethirtyeight' are in the Homework/Unit4 file
 #### d. <https://github.com/davestroud/DataScience>
 
 
