@@ -22,7 +22,11 @@ vignette("fivethirtyeight", package = "fivethirtyeight")
 
 ```
 
-
+### 3. Codebook  
+#### a. Built repository on Github for SMU MSDS homework  
+#### b. README file created 
+### c. 
+### d. <https://github.com/davestroud/DataScience>
 
 ## R Markdown
 
