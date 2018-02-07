@@ -28,3 +28,11 @@ str(GatheredFert)
 
 # Change the name using the rename function
 GatheredFert <- rename(GatheredFert, year=Year,FertilizerConsumption=Fert)
+str(GatheredFert)
+
+# Order on the basis of country and year using order function
+GatheredFert <- GatheredFert[order(GatheredFert$country, GatheredFert$year),]
+head(GatheredFert)
+
+
+
