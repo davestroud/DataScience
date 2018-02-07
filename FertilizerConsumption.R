@@ -30,9 +30,11 @@ str(GatheredFert)
 GatheredFert <- rename(GatheredFert, year=Year,FertilizerConsumption=Fert)
 str(GatheredFert)
 
-# Order on the basis of country and year using order function
+# View data on the basis of country and year using order function
 GatheredFert <- GatheredFert[order(GatheredFert$country, GatheredFert$year),]
 head(GatheredFert)
 
+# Plot the data looking for outliers
+ggplot(data = GatheredFert,aes(FertilizerConsumption))+ geom_density() + xlab("\n Fertilizer Consumption")+ylab("Density\n") + theme_bw()
 
 
