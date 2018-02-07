@@ -56,6 +56,9 @@ table(GatheredFertSub$country)
 GatheredFertSub$country[GatheredFertSub$country == "Korea, Rep."] <- "South Korea"
 FertConsumpData$country[FertConsumpData$country == "Korea, Rep."] <- "South Korea"
 
+# Log transform fertilizer consumption
+GatheredFertSub$logFertConsumption <- log(GatheredFertSub$FertilizerConsumption)
+
 
 
 
