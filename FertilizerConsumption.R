@@ -16,3 +16,9 @@ head(FertConsumpData)
 # Convert from long format to wide format
 SpreadFert <- spread(FertConsumpData, year, AG.CON.FERT.PT.ZS)
 head(SpreadFert)
+
+# Use arrange function to view data differently
+SpreadFert <- arrange(SpreadFert, country)
+head(SpreadFert)
+
+
