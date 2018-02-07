@@ -44,3 +44,8 @@ GatheredFertSub <- subset(x=GatheredFert, FertilizerConsumption <= 1000)
 
 # Subset that removes Arab World from the data set
 GatheredFertSub <- subset(x=GatheredFertSub, country != "Arab World")
+str(GatheredFertSub)
+
+# Get rid of missing values
+GatheredFertSub <- subset(x=GatheredFertSub, !is.na(FertilizerConsumption))
+
