@@ -56,13 +56,16 @@ table(GatheredFertSub$country)
 GatheredFertSub$country[GatheredFertSub$country == "Korea, Rep."] <- "South Korea"
 FertConsumpData$country[FertConsumpData$country == "Korea, Rep."] <- "South Korea"
 
-# Log transform fertilizer consumption
+# Log transform fertilizer consumption, use 0.001 if min = -inf
+GatheredFertSub$FertilizerConsumption[GatheredFertSub$FertilizerConsumption == 0] <- 0.001
 GatheredFertSub$logFertConsumption <- log(GatheredFertSub$FertilizerConsumption)
+summary(GatheredFertSub$logFertConsumption)
 
+# Creating factor variables
+attach(GatheredFertSub) # dont have to use $
 
-
-
-
-
-
-
+GatheredFertSub$FertConsGroup[FertilizerConsumption <= 18] <- 1
+GatheredFertSub$FertConsGroup[FertilizerConsumption > 18 && FertilizerConsumption <= 81] <- 2
+GatheredFertSub$FertConsGroup[FertilizerConsumption > 81 && FertilizerConsumption <= 158 ] <- 3
+GatheredFertSub$FertConsGroup[FertilizerConsumption > 158 ] <- 4
+summary(GatheredFertSub$FertConsGroup)
