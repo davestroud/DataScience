@@ -1,0 +1,60 @@
+---
+title: "Unit4HW"
+author: "David Stroud"
+date: "2/5/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### 1. FiveThirtyEightData
+```{r}
+# a. Install the fivethirtyeight package
+library(fivethirtyeight)
+
+# b. Assign eighteenth data set to object 'df'
+df <- fivethirtyeight::college_recent_grads
+
+# c. Use a more detailed list of the data sets to write out the URL in a comment to the related news story 
+vignette("fivethirtyeight", package = "fivethirtyeight")
+# URL is http://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/
+
+# d. Give dimensions and column names of df
+dim(df)
+colnames(df)
+
+
+```
+
+### 2. Data Summary
+```{r}
+# a. Give column names and count the number of columns
+colnames(df)
+ncol(df)
+
+# b. Generate a count of each unique major_category in the data frame
+library(plyr)
+major_count <- count(df$major_category)
+major_count
+
+#c. 
+#barplot(major_count$freq ~ major_count$x)
+#plot(major_count)
+plot(major_count, las=2, main="Recent College Grads", ylab="Count", xlab="Major", cex.names=.4, col="blue", horiz=TRUE)
+
+# d. Write fivethirtyeight data to csv file
+write.csv(df, file="/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Homework/Unit4/college_recent_grads.csv")
+```
+
+
+
+### 3. Codebook  
+#### a. Built repository on Github for SMU MSDS homework  
+#### b. README file created 
+#### c. RMarkdown, HTML file and data from 'fivethirtyeight' are in the Homework/Unit4 file
+#### d. <https://github.com/davestroud/DataScience>
+
+
+
