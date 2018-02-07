@@ -63,9 +63,16 @@ summary(GatheredFertSub$logFertConsumption)
 
 # Creating factor variables
 attach(GatheredFertSub) # dont have to use $
-
 GatheredFertSub$FertConsGroup[FertilizerConsumption <= 18] <- 1
-GatheredFertSub$FertConsGroup[FertilizerConsumption > 18 && FertilizerConsumption <= 81] <- 2
-GatheredFertSub$FertConsGroup[FertilizerConsumption > 81 && FertilizerConsumption <= 158 ] <- 3
+GatheredFertSub$FertConsGroup[FertilizerConsumption > 18 & FertilizerConsumption <= 81] <- 2
+GatheredFertSub$FertConsGroup[FertilizerConsumption > 81 & FertilizerConsumption <= 158 ] <- 3
 GatheredFertSub$FertConsGroup[FertilizerConsumption > 158 ] <- 4
 summary(GatheredFertSub$FertConsGroup)
+
+# Create labels for the data
+FCLabels <- c("low","medium low","medium high","high")
+str(GatheredFertSub)
+
+# Convert data to a factor
+GatheredFertSub$FertConsGroup <- factor(GatheredFertSub$FertConsGroup, labels = FCLabels)
+
