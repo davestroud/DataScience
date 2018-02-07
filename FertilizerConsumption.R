@@ -21,4 +21,6 @@ head(SpreadFert)
 SpreadFert <- arrange(SpreadFert, country)
 head(SpreadFert)
 
-
+# Use gather function create long format from wide format
+GatheredFert <- gather(SpreadFert, Year, Fert, 3:9)
+str(GatheredFert)
