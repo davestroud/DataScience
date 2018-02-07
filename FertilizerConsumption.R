@@ -6,4 +6,13 @@ library(repmis)
 library(RCurl)
 library(WDI)
 
+# Get data
 WDIsearch("fertilizer consumption")
+FertConsumpData <- WDI(indicator = "AG.CON.FERT.PT.ZS")
+dim(FertConsumpData)
+str(FertConsumpData)
+head(FertConsumpData)
+
+# Convert from long format to wide format
+SpreadFert <- spread(FertConsumpData, year, AG.CON.FERT.PT.ZS)
+head(SpreadFert)
