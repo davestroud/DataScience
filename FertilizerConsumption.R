@@ -23,4 +23,8 @@ head(SpreadFert)
 
 # Use gather function create long format from wide format
 GatheredFert <- gather(SpreadFert, Year, Fert, 3:9)
+head(GatheredFert)
 str(GatheredFert)
+
+# Change the name using the rename function
+GatheredFert <- rename(GatheredFert, year=Year,FertilizerConsumption=Fert)
