@@ -37,4 +37,10 @@ head(GatheredFert)
 # Plot the data looking for outliers
 ggplot(data = GatheredFert,aes(FertilizerConsumption))+ geom_density() + xlab("\n Fertilizer Consumption")+ylab("Density\n") + theme_bw()
 
+# Focus on Fertilizer consumption that is less than 1000
+FertOutliers <- subset(x=GatheredFert, FertilizerConsumption > 1000)
+# Another example of how to subset
+GatheredFertSub <- subset(x=GatheredFert, FertilizerConsumption <= 1000)
 
+# Subset that removes Arab World from the data set
+GatheredFertSub <- subset(x=GatheredFertSub, country != "Arab World")
