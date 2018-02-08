@@ -17,3 +17,8 @@ aodata <- aoraw[3:700,]
 
 # Rename columns
 names(aodata) <- c("country", "countrynumber", "products", "productnumber","tonnes","year")
+str(aodata)
+
+# Change countrynumber from chr to integer
+aodata$countrynumber <- as.integer(aodata$countrynumber)
+  
