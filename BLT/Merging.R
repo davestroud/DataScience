@@ -35,3 +35,8 @@ aodata$tonnes <- gsub(", tonnes \\(\\)", "", aodata$tonnes)
 aodata$tonnes <- as.numeric(aodata$tonnes)
 str(aodata)
 
+# Change the year to 2009
+aodata$year <- 2009
+
+
+
