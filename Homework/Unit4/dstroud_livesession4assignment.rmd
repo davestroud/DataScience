@@ -24,8 +24,6 @@ vignette("fivethirtyeight", package = "fivethirtyeight")
 # d. Give dimensions and column names of df
 dim(df)
 colnames(df)
-
-
 ```
 
 ### 2. Data Summary
@@ -42,7 +40,17 @@ major_count
 #c. 
 #barplot(major_count$freq ~ major_count$x)
 #plot(major_count)
-plot(major_count, las=2, main="Recent College Grads", ylab="Count", xlab="Major", cex.names=.4, col="blue", horiz=TRUE)
+library(ggplot2)
+ggplot(major_count, aes(x=x, y=freq,
+                           fill=freq)) +
+  geom_histogram(stat = "identity", position = "dodge") +
+  ggtitle("The Economic Guide To Picking a College Major") +
+  xlab("Major") +
+  ylab("Number of Majors") +
+  coord_flip() +
+
+
+
 
 # d. Write fivethirtyeight data to csv file
 write.csv(df, file="/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Homework/Unit4/college_recent_grads.csv")
@@ -55,6 +63,4 @@ write.csv(df, file="/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Home
 #### b. README file created 
 #### c. RMarkdown, HTML file and data from 'fivethirtyeight' are in the Homework/Unit4 file
 #### d. <https://github.com/davestroud/DataScience>
-
-
 
