@@ -73,6 +73,14 @@ summary(GatheredFertSub$FertConsGroup)
 FCLabels <- c("low","medium low","medium high","high")
 str(GatheredFertSub)
 
-# Convert data to a factor
+# Convert data to a factor with labels
 GatheredFertSub$FertConsGroup <- factor(GatheredFertSub$FertConsGroup, labels = FCLabels)
+summary(GatheredFertSub)
+str(GatheredFertSub)
 
+# Load file from URL address ~ two different ways
+fileURL <- "https://github.com/fivethirtyeight/data/blob/master/congress-age/congress-terms.csv"
+Congress <- source_data(fileURL, sep = ",", header = TRUE)
+
+UrlAddress <- "https://raw.githubusercontent.com/christophergandrud/Disproportionality_Data/master/Disproportionality.csv"
+DataURL <- getURL(UrlAddress)
