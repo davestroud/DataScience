@@ -21,4 +21,17 @@ str(aodata)
 
 # Change countrynumber from chr to integer
 aodata$countrynumber <- as.integer(aodata$countrynumber)
-  
+
+# Identify "Food supply...."
+fslines <- which(aodata$country == "Food supply quantity (tonnes) (tonnes)")
+
+# Get rid of "Food supply...."
+aodata <- aodata[(-1 * fslines),]
+str(aodata)
+
+# Clean up tonnes variable and make numeric using gsub
+aodata$tonnes <- gsub("\xca", "", aodata$tonnes)
+aodata$tonnes <- gsub(", tonnes \\(\\)", "", aodata$tonnes)
+aodata$tonnes <- as.numeric(aodata$tonnes)
+str(aodata)
+

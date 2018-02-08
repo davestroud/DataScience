@@ -78,9 +78,15 @@ GatheredFertSub$FertConsGroup <- factor(GatheredFertSub$FertConsGroup, labels = 
 summary(GatheredFertSub)
 str(GatheredFertSub)
 
-# Load file from URL address ~ two different ways
-fileURL <- "https://github.com/fivethirtyeight/data/blob/master/congress-age/congress-terms.csv"
-Congress <- source_data(fileURL, sep = ",", header = TRUE)
+# Load file from URL address
+UrlAddress_Disprop <- "https://raw.githubusercontent.com/christophergandrud/Disproportionality_Data/master/Disproportionality.csv"
+DataURL <- getURL(UrlAddress_Disprop)
+DispropData <- read.table(textConnection(DataURL),sep = ",",header = TRUE)
 
-UrlAddress <- "https://raw.githubusercontent.com/christophergandrud/Disproportionality_Data/master/Disproportionality.csv"
-DataURL <- getURL(UrlAddress)
+dim(DispropData)
+str(DispropData)
+names(DispropData)
+
+# Merging of data
+MergeData1 <- 
+
