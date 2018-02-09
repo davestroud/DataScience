@@ -38,5 +38,13 @@ str(aodata)
 # Change the year to 2009
 aodata$year <- 2009
 
+# Modify to make just apples dataset
+apples <- aodata[aodata$productnumber == 2617, c(1,2,5)]
+str(apples)
 
+names(apples[3]) <- "apples"
+str(apples)
 
+# Modify to make just oranges dataset
+oranges <- aodata[aodata$productnumber == 2611, c(2,5)]
+str(oranges)
