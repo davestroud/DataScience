@@ -42,9 +42,16 @@ aodata$year <- 2009
 apples <- aodata[aodata$productnumber == 2617, c(1,2,5)]
 str(apples)
 
-names(apples[3]) <- "apples"
+# Change column name to apples
+names(apples)[3] <- "apples"
 str(apples)
 
 # Modify to make just oranges dataset
 oranges <- aodata[aodata$productnumber == 2611, c(2,5)]
 str(oranges)
+
+# Change tonnes to oranges
+names(oranges)[2] <- "oranges"
+
+
+
