@@ -53,5 +53,11 @@ str(oranges)
 # Change tonnes to oranges
 names(oranges)[2] <- "oranges"
 
+# Merge cleaned data
+cleanao2 <- merge(apples, oranges, by="countrynumber", all=TRUE)
+str(cleanao2)
+
+# analyzing datasets
+library(reshape2)
 
 
