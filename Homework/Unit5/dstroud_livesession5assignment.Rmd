@@ -1,0 +1,85 @@
+---
+title: "Unit5 Homework"
+author: "David Stroud"
+date: "2/11/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+###1. Data Munging  
+```{r}
+# a. Import yob2016.txt and assign to df
+df <- read.table('yob2016.txt',header = FALSE, sep = ';')
+# Change column names
+names(df)[names(df) == "V1"] <- "Name"
+names(df)[names(df) == "V2"] <- "Gender"
+names(df)[names(df) == "V3"] <- "Amount"
+
+```
+
+```{r}
+# b. Display the summary and structure of df
+summary(df)
+str(df)
+```
+
+```{r}
+# c. find three y's at the end of a name
+
+```
+
+```{r}
+# d. Remove misspelled name and assign data set as an object: y2016
+
+```
+
+
+### 2. Data Merging
+```{r}
+# a. Import yob2015.txt file
+y2015<- read.table('yob2015.txt',header = FALSE, sep = ',')
+
+# Change the column names
+names(y2015)[names(y2015) == "V1"] <- "Name"
+names(y2015)[names(y2015) == "V2"] <- "Gender"
+names(y2015)[names(y2015) == "V3"] <- "Amount"
+```
+
+
+```{r}
+# b. Display the last ten rows in the data frame
+tail(y2015,10)
+# It is interesting that the names are all Male and there are 5 names of each
+```
+
+
+
+
+
+
+
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
