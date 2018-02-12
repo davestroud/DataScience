@@ -69,4 +69,6 @@ final <- merge(y2015, y2016,by='Name',all=FALSE)
 
 ```
 
+### 4. Link to Unit 5 assignment on GitHub 
+[Unit 5 Homework](https://github.com/davestroud/DataScience)
 
