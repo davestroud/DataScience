@@ -29,12 +29,13 @@ str(df)
 
 ```{r}
 # c. find three y's at the end of a name
-
+grep("yyy", df$Name)
 ```
 
 ```{r}
 # d. Remove misspelled name and assign data set as an object: y2016
-
+df <- df[-212,]
+y2016 <- df
 ```
 
 
@@ -57,8 +58,16 @@ tail(y2015,10)
 ```
 
 
+```{r}
+# c. Merge y2016 and y2015 by Name column and assign to final
+final <- merge(y2015, y2016,by='Name',all=FALSE)
+```
 
 
+### 3. Data Summary
+```{r}
+
+```
 
 
 
