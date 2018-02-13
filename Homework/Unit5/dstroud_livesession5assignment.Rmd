@@ -70,8 +70,28 @@ final <- merge(y2015, y2016,by='Names',all=FALSE)
 #     How many people were given popular names in these two years?
 final$Total <- final$Amount.x + final$Amount.y
 summary(final$Total)
+sum(final$Total)
 
 ```
+
+```{r}
+# b. Sort the data by total. What are the 10 most popular names
+final <- final[with(final, order(-Total)), ]
+head(final,10)
+```
+
+```{r}
+# c. Omit the boys and give the 10 most popular girls names
+top_girls <- final[final$Gender.x == 'F',] 
+head(top_girls,10)
+```
+
+```{r}
+# Write the top 10 girls names and their totals to a csv file.
+# Remove all other columns
+```
+
+
 
 ### 4. Link to Unit 5 assignment on GitHub 
 [Unit 5 Homework](https://github.com/davestroud/DataScience)
