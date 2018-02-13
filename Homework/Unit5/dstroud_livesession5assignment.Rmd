@@ -66,18 +66,18 @@ final <- merge(y2015, y2016,by='Names',all=FALSE)
 
 ### 3. Data Summary
 ```{r}
-# a. Create Column called 'Total' in final that adds the amount of children in 2015 and 2016 together. 
-#     How many people were given popular names in these two years?
+# a. Create Column called 'Total' in final that adds the amount of children in 2015 and 2016 together.
 final$Total <- final$Amount.x + final$Amount.y
-summary(final$Total)
+#  How many people were given popular names in these two years?
 sum(final$Total)
-
+# In the two years combinded 11,404,228 people were given popular names
 ```
 
 ```{r}
 # b. Sort the data by total. What are the 10 most popular names
-final <- final[with(final, order(-Total)), ]
-head(final,10-30500)
+#final <- final[with(final, order(-Total)), ]
+#head(final,10)
+
 ```
 
 ```{r}
