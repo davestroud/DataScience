@@ -68,7 +68,8 @@ final <- merge(y2015, y2016,by='Names',all=FALSE)
 ```{r}
 # a. Create Column called 'Total' in final that adds the amount of children in 2015 and 2016 together. 
 #     How many people were given popular names in these two years?
-
+final$Total <- final$Amount.x + final$Amount.y
+summary(final$Total)
 
 ```
 
