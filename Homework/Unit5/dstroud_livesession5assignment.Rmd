@@ -90,9 +90,10 @@ head(top_girls,10)
 # Write the top 10 girls names and their totals to a csv file.
 # Remove all other columns
 attach(final)
-top_ten_girls <- dplyr::select(final,-Gender.x,-Gender.y, -Amount.x, -Amount.y, -Total)
+top_ten_girls <- dplyr::select(top_girls,-Gender.x,-Gender.y, -Amount.x, -Amount.y, -Total)
 head(top_ten_girls,10)
 final_top_ten_girls <- head(top_ten_girls,10)
+write.csv(final_top_ten_girls, file = "Top Ten Girl Names")
 ```
 
 
