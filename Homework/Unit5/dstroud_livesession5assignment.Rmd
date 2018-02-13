@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # a. Import yob2016.txt and assign to df
 df <- read.table('yob2016.txt',header = FALSE, sep = ';')
 # Change column names
-names(df)[names(df) == "V1"] <- "Name"
+names(df)[names(df) == "V1"] <- "Names"
 names(df)[names(df) == "V2"] <- "Gender"
 names(df)[names(df) == "V3"] <- "Amount"
 
@@ -29,7 +29,7 @@ str(df)
 
 ```{r}
 # c. find three y's at the end of a name
-grep("yyy", df$Name)
+grep("yyy", df$Names)
 ```
 
 ```{r}
@@ -45,7 +45,7 @@ y2016 <- df
 y2015<- read.table('yob2015.txt',header = FALSE, sep = ',')
 
 # Change the column names
-names(y2015)[names(y2015) == "V1"] <- "Name"
+names(y2015)[names(y2015) == "V1"] <- "Names"
 names(y2015)[names(y2015) == "V2"] <- "Gender"
 names(y2015)[names(y2015) == "V3"] <- "Amount"
 ```
@@ -60,12 +60,15 @@ tail(y2015,10)
 
 ```{r}
 # c. Merge y2016 and y2015 by Name column and assign to final
-final <- merge(y2015, y2016,by='Name',all=FALSE)
+final <- merge(y2015, y2016,by='Names',all=FALSE)
 ```
 
 
 ### 3. Data Summary
 ```{r}
+# a. Create Column called 'Total' in final that adds the amount of children in 2015 and 2016 together. 
+#     How many people were given popular names in these two years?
+
 
 ```
 
