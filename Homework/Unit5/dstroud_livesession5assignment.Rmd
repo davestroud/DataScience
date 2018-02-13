@@ -75,9 +75,8 @@ sum(final$Total)
 
 ```{r}
 # b. Sort the data by total. What are the 10 most popular names
-#final <- final[with(final, order(-Total)), ]
-#head(final,10)
-
+final <- final[with(final, order(-Total)), ]
+head(final,10)
 ```
 
 ```{r}
