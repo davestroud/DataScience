@@ -77,7 +77,7 @@ sum(final$Total)
 ```{r}
 # b. Sort the data by total. What are the 10 most popular names
 final <- final[with(final, order(-Total)), ]
-head(final,10)
+head(final,10-30500)
 ```
 
 ```{r}
@@ -89,6 +89,10 @@ head(top_girls,10)
 ```{r}
 # Write the top 10 girls names and their totals to a csv file.
 # Remove all other columns
+attach(final)
+top_ten_girls <- dplyr::select(final,-Gender.x,-Gender.y, -Amount.x, -Amount.y, -Total)
+head(top_ten_girls,10)
+final_top_ten_girls <- head(top_ten_girls,10)
 ```
 
 
