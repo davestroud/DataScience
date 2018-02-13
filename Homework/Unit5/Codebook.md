@@ -1,7 +1,8 @@
 
 List of Objects and Definitions Created in Homework 5
 
-"df" ~ First object created from file yob2016. Contains information on the names   
+"df" ~ First object created from file yob2016. Contains information on the names  
+
 "final" ~ Merging of list yob2015 and yob2016  
 
 "final_top_ten_girls" ~ last object. names top ten most popular girl names  
