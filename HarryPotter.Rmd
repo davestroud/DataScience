@@ -14,6 +14,12 @@ library("rvest")   # Great for grabbing and parsing HTML
 library("dplyr")   # Easy transformation of data.frames for summarization
 library("tidyr")   # Nice way to arrange data
 library("ggplot2") # Excellent for visuals
-
 ```
+
+```{r}
+# Pulling from online
+url <- 'http://www.imdb.com/title/tt1201607/fullcredits?ref_=tt_ql_1'
+webpage<- read_html(url)
+```
+
 
