@@ -1,0 +1,19 @@
+---
+title: "HarryPotter"
+author: "David Stroud"
+date: "3/5/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library("rvest")   # Great for grabbing and parsing HTML
+library("dplyr")   # Easy transformation of data.frames for summarization
+library("tidyr")   # Nice way to arrange data
+library("ggplot2") # Excellent for visuals
+
+```
+
