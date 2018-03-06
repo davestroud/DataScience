@@ -55,5 +55,40 @@ knitr::opts_chunk$set(echo = TRUE)
 list_of_pages <- str_c(url, '?page=', 1:latest_page_number)
 ```
 
+```{r}
+get_reviews <- function(html) {
+  html %>%
+    # The relevant tag
+    html_nodes('.review-body') %>%
+    html_text() %>%
+    # Convert the list into a vector
+    unlist()
+}
+
+get_reviewers_names <- function(html) {
+  html %>%
+    html_nodes('.user-review-name-link') %>%
+    html_text() %>%
+    unlist()
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
