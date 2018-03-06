@@ -56,21 +56,24 @@ list_of_pages <- str_c(url, '?page=', 1:latest_page_number)
 ```
 
 ```{r}
-get_reviews <- function(html) {
-  html %>%
-    # The relevant tag
-    html_nodes('.review-body') %>%
-    html_text() %>%
-    # Convert the list into a vector
-    unlist()
-}
+ get_reviews <- function(html){
+      html %>% 
+        # The relevant tag
+        html_nodes('.review-info__body__text') %>%      
+        html_text() %>% 
+        # Trim additional white space
+        str_trim() %>%                       
+        # Convert the list into a vector
+        unlist()                             
+    }
 
-get_reviewers_names <- function(html) {
-  html %>%
-    html_nodes('.user-review-name-link') %>%
-    html_text() %>%
-    unlist()
-}
+    get_reviewer_names <- function(html){
+      html %>% 
+        html_nodes('.consumer-info__details__name') %>% 
+        html_text() %>% 
+        str_trim() %>% 
+        unlist()
+    }
 ```
 
 
@@ -93,7 +96,7 @@ get_review_dates <- function(html){
                   ymd_hms() %>%                 
                   unlist()
 
-      # Combine the status and the date information to filter one via the other
+     # Combine the status and the date information to filter one via the other
       return_dates <- tibble(status = status, dates = dates) %>%   
                         # Only these are actual reviews
                         filter(status == 'ndate') %>%              
@@ -107,7 +110,7 @@ get_review_dates <- function(html){
 
       length_reviews <- length(get_reviews(html))
 
-      return_reviews <- if (length(return_dates)> length_reviews){
+       return_reviews <- if (length(return_dates)> length_reviews){
           return_dates[1:length_reviews]
         } else{
           return_dates
@@ -122,79 +125,82 @@ get_star_rating <- function(html){
       # The pattern you look for: the first digit after `count-`
       pattern = 'count-'%R% capture(DIGIT)    
 
-      ratings <-  html %>% 
-        html_nodes('.star-rating') %>% 
-        html_attrs() %>% 
-        # Apply the pattern match to all attributes
-        map(str_match, pattern = pattern) %>%
-        # str_match[1] is the fully matched string, the second entry
-        # is the part you extract with the capture in your pattern  
-        map(2) %>%                             
-
-        unlist()
-
-      # Leave out the first instance, as it is not part of a review
-      ratings[2:length(ratings)]               
+      vector <-  html %>% 
+        html_nodes("[itemprop=reviewRating]") %>% 
+         html_attr('class') %>%  
+         str_match(pattern) %>% 
+         map(1) %>%  
+         as.numeric()  
+       vector <-  vector[!is.na(vector)]
+       vector
     }
 ```
 
 
 ```{r}
-get_data_table <- function(html, company_name) {
-  # Extract the basic information from the html
-  reviews <- get_reviews(html)
-  reviewer_names <- get_reviewers_names(html)
-  dates <- get_review_dates(html)
-  ratings <- get_star_rating(html)
-  
-  # Combine into a tibble
-  combined_data <- tibble(reviewer = reviewer_names,
-                          date = dates, 
-                          rating = ratings,
-                          review = reviews)
-  
-  # Tag the individual data with the company name
-  combined_data %>%
-    mutate(company = company_name) %>%
-    select(company, reviwer, date, rating, review)
-}
+get_data_table <- function(html, company_name){
+
+      # Extract the Basic information from the HTML
+      reviews <- get_reviews(html)
+      reviewer_names <- get_reviewer_names(html)
+      dates <- get_review_dates(html)
+      ratings <- get_star_rating(html)
+
+      # Combine into a tibble
+      combined_data <- tibble(reviewer = reviewer_names,
+                              date = dates,
+                              rating = ratings,
+                              review = reviews) 
+
+      # Tag the individual data with the company name
+      combined_data %>% 
+        mutate(company = company_name) %>% 
+        select(company, reviewer, date, rating, review)
+    }
 ```
 
 
 ```{r}
 # Wrap in a fuction that extracts the HTML from URL, such that handling is more convienient
-get_data_from_url <- function(url, company_name) {
-  html <- read_html(url)
-  get_data_table(html, company_name)
-}
+get_data_from_url <- function(url, company_name){
+      html <- read_html(url)
+      get_data_table(html, company_name)
+    }
 ```
 
 
-## Write one convenient function that takes as input the URL of the landing page of a company and the label you want to give the company
 ```{r}
-scrape_write_table <- function(url, company_name) {
-  
-  # Read the first page
-  first_page <- read_html(url)
-  
-  # Extract the number of pages that have to be queried
-  latest_page_number <- get_last_page(first_page)
-  
-  # Generate the target URLs
-  list_of_pages <- str_c(url, '?page=', 1:latest_page_number)
-  
-  # Apply the extraction and bind the individual results back into one table, 
-  # which is then written as a tsv file into the working directory
-  
-  list_of_pages %>%
-    # Apply to all URLs
-    map(get_data_from_url, company_name) %>%
-    # Combine the tibbles into one tibble
-    bind_rows() %>%
-    # Write a tab-seperated file
-    write_tsv(str_c(company_name,'.tsv'))
-}
+scrape_write_table <- function(url, company_name){
+
+      # Read first page
+      first_page <- read_html(url)
+
+      # Extract the number of pages that have to be queried
+      latest_page_number <- get_last_page(first_page)
+
+      # Generate the target URLs
+      list_of_pages <- str_c(url, '?page=', 1:latest_page_number)
+      
+      # Apply the extraction and bind the individual results back into one table, 
+      # which is then written as a tsv file into the working directory
+      list_of_pages %>% 
+        # Apply to all URLs
+        map(get_data_from_url, company_name) %>%  
+        # Combine the tibbles into one tibble
+        bind_rows() %>%                           
+        # Write a tab-separated file
+        write_tsv(str_c(company_name,'.tsv'))     
+    }
 ```
+
+
+```{r}
+ scrape_write_table(url, 'amazon')
+
+    amz_tbl <- read_tsv('amazon.tsv')
+    tail(amz_tbl, 5)
+```
+
 
 
 
