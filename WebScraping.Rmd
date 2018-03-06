@@ -116,7 +116,27 @@ get_review_dates <- function(html){
     }
 ```
 
+```{r}
+get_star_rating <- function(html){
 
+      # The pattern you look for: the first digit after `count-`
+      pattern = 'count-'%R% capture(DIGIT)    
+
+      ratings <-  html %>% 
+        html_nodes('.star-rating') %>% 
+        html_attrs() %>% 
+        # Apply the pattern match to all attributes
+        map(str_match, pattern = pattern) %>%
+        # str_match[1] is the fully matched string, the second entry
+        # is the part you extract with the capture in your pattern  
+        map(2) %>%                             
+
+        unlist()
+
+      # Leave out the first instance, as it is not part of a review
+      ratings[2:length(ratings)]               
+    }
+```
 
 
 
