@@ -122,3 +122,26 @@ df$WasItClose[which(df$VictorySpread<=FQ)] <- "Nail Biter" # Lower than first qu
 df$WasItClose[which(df$VictorySpread>=TQ)] <- "Blowout" # Higher than the third quartile might be hilariously uncompetitive
 ```
 
+
+```{r}
+# Create a plot that differentiates between competitive games and non-competitive
+ggplot(df, aes(Date, VictorySpread))+
+  geom_bar(aes(fill=WasItClose), stat="identity")+
+  ggtitle("Super Bowls - Degrees of Competitive") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Super Bowl Year") +
+  ylab("Final Score Discrepancy")
+```
+
+```{r}
+# Create a Viewing List for the Five Most Recent Competitive Super Bowls
+watchthese<-df %>%
+  select(SuperBowl,VictorySpread,WasItClose, Date) %>% # Select These Variables Only
+  filter(WasItClose=="Nail Biter") %>% # Only consider Nail Biters
+  arrange(VictorySpread,desc(Date)) %>% # Arrange them by score and how recent they were
+  slice(1:5) %>% # Pick the closest - in event of a tie, prioritize most recent
+  select(-WasItClose, -VictorySpread) # Remove the Spoilers
+
+data.frame(watchthese)
+```
+
