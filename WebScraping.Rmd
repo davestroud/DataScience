@@ -22,3 +22,30 @@ knitr::opts_chunk$set(echo = TRUE)
     library(lubridate)
 ```
 
+```{r}
+# Landing page for Amazon Review
+ url <-'http://www.trustpilot.com/review/www.amazon.com'
+```
+
+```{r}
+ get_last_page <- function(html){
+
+      pages_data <- html %>% 
+                      # The '.' indicates the class
+                      html_nodes('.pagination-page') %>% 
+                      # Extract the raw text as a list
+                      html_text()                   
+
+      # The second to last of the buttons is the one
+      pages_data[(length(pages_data)-1)] %>%            
+        # Take the raw string
+        unname() %>%                                     
+        # Convert to number
+        as.numeric()                                     
+    }
+```
+
+
+
+
+

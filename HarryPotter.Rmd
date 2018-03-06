@@ -22,6 +22,11 @@ url <- 'http://www.imdb.com/title/tt1201607/fullcredits?ref_=tt_ql_1'
 webpage<- read_html(url)
 ```
 
+```{r}
+# Identifying HTML nodes
+sb_table<-html_nodes(webpage, 'table')
+sb<-html_table(sb_table)
+```
 
 
 
