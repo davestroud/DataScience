@@ -74,6 +74,35 @@ get_reviewers_names <- function(html) {
 ```
 
 
+```{r}
+get_review_dates <- function(html) {
+  
+  status <- html %>%
+    html_node('time') %>%
+    # The status information is this time a tag attribute
+    html_attrs() %>%
+    # Extract the second element
+    map(2) %>%
+    unlist()
+
+  dates <- html %>%
+    html_node('time') %>%
+    html_attrs() %>%
+    map(1) %>%
+    # Parse the string into a datetime object with lubricate
+    ymd_hms() %>%
+    unlist()
+  
+  # Combine the status and dates information to filter one via the other
+  return_dates <- tibble(status = status, dates = dates) %>%
+    # Only these are actual reviews
+    filter(status == 'ndate') %>%
+    # Select and convert to vector
+    pull(dates) %>%
+    # Convert DateTimes to POSIX objects
+    as.POSIXct(origin = '1970-01-01 00:00:00')
+}
+```
 
 
 
