@@ -170,6 +170,31 @@ get_data_from_url <- function(url, company_name) {
 ```
 
 
+## Write one convenient function that takes as input the URL of the landing page of a company and the label you want to give the company
+```{r}
+scrape_write_table <- function(url, company_name) {
+  
+  # Read the first page
+  first_page <- read_html(url)
+  
+  # Extract the number of pages that have to be queried
+  latest_page_number <- get_last_page(first_page)
+  
+  # Generate the target URLs
+  list_of_pages <- str_c(url, '?page=', 1:latest_page_number)
+  
+  # Apply the extraction and bind the individual results back into one table, 
+  # which is then written as a tsv file into the working directory
+  
+  list_of_pages %>%
+    # Apply to all URLs
+    map(get_data_from_url, company_name) %>%
+    # Combine the tibbles into one tibble
+    bind_rows() %>%
+    # Write a tab-seperated file
+    write_tsv(str_c(company_name,'.tsv'))
+}
+```
 
 
 
