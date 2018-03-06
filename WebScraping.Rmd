@@ -75,33 +75,45 @@ get_reviewers_names <- function(html) {
 
 
 ```{r}
-get_review_dates <- function(html) {
-  
-  status <- html %>%
-    html_node('time') %>%
-    # The status information is this time a tag attribute
-    html_attrs() %>%
-    # Extract the second element
-    map(2) %>%
-    unlist()
+get_review_dates <- function(html){
 
-  dates <- html %>%
-    html_node('time') %>%
-    html_attrs() %>%
-    map(1) %>%
-    # Parse the string into a datetime object with lubricate
-    ymd_hms() %>%
-    unlist()
-  
-  # Combine the status and dates information to filter one via the other
-  return_dates <- tibble(status = status, dates = dates) %>%
-    # Only these are actual reviews
-    filter(status == 'ndate') %>%
-    # Select and convert to vector
-    pull(dates) %>%
-    # Convert DateTimes to POSIX objects
-    as.POSIXct(origin = '1970-01-01 00:00:00')
-}
+      status <- html %>% 
+                  html_nodes('time') %>% 
+                  # The status information is this time a tag attribute
+                  html_attrs() %>%             
+                  # Extract the second element
+                  map(2) %>%                    
+                  unlist() 
+
+      dates <- html %>% 
+                  html_nodes('time') %>% 
+                  html_attrs() %>% 
+                  map(1) %>% 
+                  # Parse the string into a datetime object with lubridate
+                  ymd_hms() %>%                 
+                  unlist()
+
+      # Combine the status and the date information to filter one via the other
+      return_dates <- tibble(status = status, dates = dates) %>%   
+                        # Only these are actual reviews
+                        filter(status == 'ndate') %>%              
+                        # Select and convert to vector
+                        pull(dates) %>%                            
+                        # Convert DateTimes to POSIX objects
+                        as.POSIXct(origin = '1970-01-01 00:00:00') 
+
+      # The lengths still occasionally do not lign up. You then arbitrarily crop the dates to fit
+      # This can cause data imperfections, however reviews on one page are generally close in time)
+
+      length_reviews <- length(get_reviews(html))
+
+      return_reviews <- if (length(return_dates)> length_reviews){
+          return_dates[1:length_reviews]
+        } else{
+          return_dates
+        }
+      return_reviews
+    }
 ```
 
 
