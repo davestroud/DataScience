@@ -45,7 +45,15 @@ knitr::opts_chunk$set(echo = TRUE)
     }
 ```
 
+```{r}
+ first_page <- read_html(url)
+    (latest_page_number <- get_last_page(first_page))
+```
 
+```{r}
+# Generate a list of all relevant html's
+list_of_pages <- str_c(url, '?page=', 1:latest_page_number)
+```
 
 
 
