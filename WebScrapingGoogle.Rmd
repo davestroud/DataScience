@@ -116,7 +116,7 @@ get_review_dates <- function(html){
                         # Convert DateTimes to POSIX objects
                         as.POSIXct(origin = '1970-01-01 00:00:00') 
 
-      # The lengths still occasionally do not lign up. You then arbitrarily crop the dates to fit
+      # The lengths still occasionally do not line up. You then arbitrarily crop the dates to fit
       # This can cause data imperfections, however reviews on one page are generally close in time)
 
       length_reviews <- length(get_reviews(html))
@@ -213,11 +213,76 @@ scrape_write_table <- function(url, company_name){
 ```
 
 
+```{r}
+# For working with time series
+    library(xts)      
+
+    # For hypothesis testing
+    library(infer)
+```
 
 
 
+```{r}
+amazon <- read_tsv('amazon.tsv')
+google <- read_tsv('google.tsv')
+```
+
+```{r}
+full_data <- rbind(amazon, google)
+
+    full_data%>%
+      group_by(company) %>% 
+      summarise(count = n(), mean_rating = mean(rating))
+```
 
 
+```{r}
+amazon_ts <- xts(amazon$rating, amazon$date)
+colnames(amazon_ts) <- 'rating'
+google_ts <- xts(google$rating, google$date)
+colnames(google_ts) <- 'rating'
+
+open_ended_interval <- '2016-01-01/'
+
+# Subsetting the time series
+amazon_sts <- amazon_ts[open_ended_interval] 
+google_sts <- google_ts[open_ended_interval]
+```
+
+```{r}
+amazon_month_avg <-  apply.monthly(amazon_sts, colMeans, na.rm = T)
+amazon_month_count  <-  apply.monthly(amazon_sts, FUN = length)
+
+google_month_avg <-  apply.monthly(google_sts, colMeans, na.rm = T)
+google_month_count  <-  apply.monthly(google_sts, FUN = length)
+```
+
+
+```{r}
+  start_date = '2016-01-01/'
+    full_data <- full_data %>%  
+      filter(date >= start_date) %>% 
+      mutate(weekday = weekdays(date, abbreviate = T),
+             hour = hour(date))
+
+    # Treat the weekdays as factor. 
+    # The order is for the plotting only
+    full_data$weekday <-  factor(full_data$weekday, 
+                                 levels = c('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'))
+```
+
+```{r}
+ hypothesis_data <- full_data %>% 
+      mutate(is_weekend = ifelse(weekday %in% c('Sat', 'Sun'), 1, 0)) %>% 
+      select(company, is_weekend, rating)
+
+hypothesis_data %>% 
+      group_by(company, is_weekend) %>% 
+      summarise(avg_rating = mean(rating)) %>% 
+      spread(key = is_weekend, value = avg_rating) %>% 
+      rename(weekday = '0', weekend = '1')
+```
 
 
 
