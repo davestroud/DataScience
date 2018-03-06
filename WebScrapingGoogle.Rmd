@@ -284,6 +284,35 @@ hypothesis_data %>%
       rename(weekday = '0', weekend = '1')
 ```
 
+```{r}
+weekend_rating <- hypothesis_data %>% 
+      filter(company == 'google') %>% 
+      filter(is_weekend == 1) %>% 
+      summarise(mean(rating)) %>% 
+      pull()
 
+    workday_rating <- hypothesis_data %>% 
+      filter(company == 'google') %>% 
+      filter(is_weekend == 0) %>% 
+      summarise(mean(rating)) %>% 
+      pull()
+
+    (diff_work_we <- workday_rating - weekend_rating)
+```
+
+```{r}
+library(infer)
+permutation_tests <- hypothesis_data %>% 
+      filter(company == 'google') %>% 
+      specify(rating ~ is_weekend ) %>% 
+      hypothesize(null = 'independence') %>% 
+      generate(reps = 10000, type = 'permute') %>% 
+      calculate(stat = 'diff in means', order = c(0,1))
+```
+
+```{r}
+permutation_tests %>% 
+      summarise(p = mean(abs(stat)>= diff_work_we))
+```
 
 
