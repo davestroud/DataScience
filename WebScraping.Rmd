@@ -139,6 +139,26 @@ get_star_rating <- function(html){
 ```
 
 
+```{r}
+get_data_table <- function(html, company_name) {
+  # Extract the basic information from the html
+  reviews <- get_reviews(html)
+  reviewer_names <- get_reviewers_names(html)
+  dates <- get_review_dates(html)
+  ratings <- get_star_rating(html)
+  
+  # Combine into a tibble
+  combined_data <- tibble(reviewer = reviewer_names,
+                          date = dates, 
+                          rating = ratings,
+                          review = reviews)
+  
+  # Tag the individual data with the company name
+  combined_data %>%
+    mutate(company = company_name) %>%
+    select(company, reviwer, date, rating, review)
+}
+```
 
 
 
