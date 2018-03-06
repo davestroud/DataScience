@@ -161,6 +161,13 @@ get_data_table <- function(html, company_name) {
 ```
 
 
+```{r}
+# Wrap in a fuction that extracts the HTML from URL, such that handling is more convienient
+get_data_from_url <- function(url, company_name) {
+  html <- read_html(url)
+  get_data_table(html, company_name)
+}
+```
 
 
 
