@@ -282,6 +282,9 @@ hypothesis_data %>%
       summarise(avg_rating = mean(rating)) %>% 
       spread(key = is_weekend, value = avg_rating) %>% 
       rename(weekday = '0', weekend = '1')
+
+hypothesis_data$is_weekend <- factor(hypothesis_data$is_weekend)
+
 ```
 
 ```{r}
@@ -296,8 +299,8 @@ weekend_rating <- hypothesis_data %>%
       filter(is_weekend == 0) %>% 
       summarise(mean(rating)) %>% 
       pull()
-
-    (diff_work_we <- workday_rating - weekend_rating)
+# Factor needs to be enforced for the permutation  
+(diff_work_we <- workday_rating - weekend_rating)
 ```
 
 ```{r}
@@ -314,5 +317,4 @@ permutation_tests <- hypothesis_data %>%
 permutation_tests %>% 
       summarise(p = mean(abs(stat)>= diff_work_we))
 ```
-
 
