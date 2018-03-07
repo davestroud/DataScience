@@ -20,8 +20,9 @@ library(XML)
 library(RCurl)
 ```
 
+
 ```{r getFreeForm}
-StopWords = readLines("http://jmlr.csail.mit.edu/papers/volume5/lewis04a/a11-smart-stop-list/english.stop")
+StopWords = readLines("https://github.com/arc12/Text-Mining-Weak-Signals/wiki/Standard-set-of-english-stopwords")
 
 asWords = function(txt, stopWords = StopWords, stem = FALSE)
 {
@@ -114,17 +115,17 @@ The function `cy.ReadPost()` allows us to read a single post from CyberCoders.co
 
 ```{r GetPosts}
 # Obtain URLs for job posts
-txt = getForm("http://www.cybercoders.com/search/", searchterms = '"Data Scientist"',
+txt = getForm("https://www.cybercoders.com/search/", searchterms = '"Data Scientist"',
               searchlocation = "",  newsearch = "true", sorttype = "")
 # Parse the links
 doc = htmlParse(txt, asText = TRUE)
 links = getNodeSet(doc, "//div[@class = 'job-title']/a/@href")
 # Save the links in the vector joblinks
-joblinks <- getRelativeURL(as.character(links), "http://www.cybercoders.com/search/")
+joblinks <- getRelativeURL(as.character(links), "https://www.cybercoders.com/search/")
 # Read the posts
 # posts <- lapply(joblinks,cy.readPost)
 
-cy.getPostLinks = function(doc, baseURL = "http://www.cybercoders.com/search/") 
+cy.getPostLinks = function(doc, baseURL = "https://www.cybercoders.com/search/") 
   {
     if(is.character(doc)) doc = htmlParse(doc)
     links = getNodeSet(doc, "//div[@class = 'job-title']/a/@href") 
@@ -132,7 +133,7 @@ cy.getPostLinks = function(doc, baseURL = "http://www.cybercoders.com/search/")
 }
 
 cy.readPagePosts = function(doc, links = cy.getPostLinks(doc, baseURL),
-baseURL = "http://www.cybercoders.com/search/")
+baseURL = "https://www.cybercoders.com/search/")
   {
     if(is.character(doc)) doc = htmlParse(doc)
     lapply(links, cy.readPost)
@@ -155,7 +156,7 @@ The following code chunk pulls it all together. The function `cy.getNextPageLink
 cy.getNextPageLink = function(doc, baseURL = docName(doc))
 {
   if(is.na(baseURL))
-     baseURL = "http://www.cybercoders.com/"
+     baseURL = "https://www.cybercoders.com/search/"
   link = getNodeSet(doc, "//li[@class = 'lnk-next pager-item ']/a/@href")
   if(length(link) == 0)
     return(character())
@@ -172,7 +173,7 @@ Now we have all we need to retrieve all job posts on Cyber Coders for a given se
 cyberCoders =
 function(query)
 {
-   txt = getForm("http://www.cybercoders.com/search/",
+   txt = getForm("https://www.cybercoders.com/search/",
                   searchterms = query,  searchlocation = "",
                   newsearch = "true",  sorttype = "")
    doc = htmlParse(txt)
