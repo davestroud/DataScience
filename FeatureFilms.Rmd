@@ -65,6 +65,13 @@ description_data <- html_text(description_data_html)
 head(description_data)
 ```
 
+```{r}
+# Data-Preprocessing ~ removing \n
+description_data <- gsub("\n","", description_data)
+
+# Lets have another look at description data
+head(description_data)
+```
 
 
 
