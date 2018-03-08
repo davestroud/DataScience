@@ -123,7 +123,7 @@ links = getNodeSet(doc, "//div[@class = 'job-title']/a/@href")
 # Save the links in the vector joblinks
 joblinks <- getRelativeURL(as.character(links), "https://www.cybercoders.com/search/")
 # Read the posts
-# posts <- lapply(joblinks,cy.readPost)
+#posts <- lapply(joblinks,cy.readPost)
 
 cy.getPostLinks = function(doc, baseURL = "https://www.cybercoders.com/search/") 
   {
