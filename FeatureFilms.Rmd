@@ -34,3 +34,23 @@ rank_data <- html_text(rank_data_html)
 head(rank_data)
 ```
 
+```{r}
+# Data Processing: Convert rankings to numerical
+rank_data <- as.numeric(rank_data)
+
+# View the first six rankings
+head(rank_data)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
