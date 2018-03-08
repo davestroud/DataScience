@@ -96,10 +96,34 @@ head(runtime_data)
 ```
 
 
+```{r}
+# Use CSS selectors to Movie Genre section
+genre_data_html <- html_nodes(webpage, '.genre')
+
+# Convert Genre to text
+genre_data <- html_text(genre_data_html)
+
+# View the first six observations
+head(genre_data)
+```
 
 
+```{r}
+# Data-Preprocessing: removing \n from Genre
+genre_data <- gsub("\n", "", genre_data)
+
+# Lets view the data again
+head(genre_data)
+```
 
 
+```{r}
+# Data-Preprocessing: removing extra space
+genre_data <- gsub(" ", "", genre_data)
+
+# Lets view the data again
+head(genre_data)
+```
 
 
 
