@@ -23,10 +23,10 @@ webpage<- read_html(url)
 ```
 
 ```{r}
-# Identifying HTML nodes
-sb_table<-html_nodes(webpage, 'table')
-sb<-html_table(sb_table)
+# Identify the HTML nodes
+hp_table <- html_nodes(webpage, '.loadlate' )
 ```
+
 
 
 
