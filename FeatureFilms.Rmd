@@ -81,9 +81,33 @@ runtime_data_html <- html_nodes(webpage, '.text-muted .runtime')
 # Converting Movie Runtime to text
 runtime_data <- html_text(runtime_data_html)
 
-# View the first six description
+# View the first six observations
 head(runtime_data)
 ```
+
+
+```{r}
+# Data-Preprocessing: removing minutes and converting to numerical
+runtime_data <- gsub(" min", "", runtime_data)
+runtime_data <- as.numeric(runtime_data)
+
+# View the first six observations
+head(runtime_data)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
