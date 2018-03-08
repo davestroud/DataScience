@@ -23,3 +23,14 @@ webpage <- read_html(url)
 
 ```
 
+```{r}
+# Use CSS selectors to scrape the rankings section
+rank_data_html <- html_nodes(webpage, '.text-primary')
+
+# Converting the ranking data to text
+rank_data <- html_text(rank_data_html)
+
+# Look at the rankings
+head(rank_data)
+```
+
