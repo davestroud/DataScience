@@ -1,0 +1,17 @@
+---
+title: "MobyDick"
+author: "David Stroud"
+date: "3/8/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Add Moby Dick book
+download.file("https://www.gutenberg.org/files/2701/2701-h/2701-h.htm#link2HCH0001", "mobydick.txt")
+
+```
+
