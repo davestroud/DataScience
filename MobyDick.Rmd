@@ -12,6 +12,25 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 # Add Moby Dick book
 download.file("https://www.gutenberg.org/files/2701/2701-h/2701-h.htm#link2HCH0001", "mobydick.txt")
+```
 
+```{r}
+# Empty vector to store results
+moby_dick_chap1 = rep("", 10)
+
+# Number of lines to skip until Chapter 1
+skip = 549
+
+# Reading 10 lines (line by line using scan)
+for (i in 1L:10) {
+  one_line = scan("mobydick.txt", what="", skip=skip, nlines = 1)
+  # Pasting the contents of one line
+  moby_dick_chap1[i] = paste(one_line, collapse = " ")
+  skip = skip + 1
+}
+```
+
+```{r}
+moby_dick_chap1
 ```
 
