@@ -16,13 +16,16 @@ library("tidyr")   # Nice way to arrange data
 library("ggplot2") # Excellent for visuals
 ```
 
+
+### 1. Harry Potter Cast
 ```{r}
-# Pulling from online
+# a. Harry Potter Cast. Pulling data from website
 url <- 'http://www.imdb.com/title/tt1201607/fullcredits?ref_=tt_ql_1'
 webpage <- read_html(url)
 ```
 
 ```{r}
+# b. Scrape the table
 webpage %>%
   html_nodes(css = "table")
 ```
@@ -31,9 +34,8 @@ webpage %>%
 cast = webpage %>%
   html_nodes(".itemprop .itemprop") %>%
   html_text()
-
-cast
 ```
+
 
 ```{r}
 # Turn actors names into a dataframe
@@ -41,14 +43,17 @@ harry_df<-data.frame(cast)
 
 ```
 
-```{r}
-main_actors <- extract(harry_df, cast, c("FirstName", "LastName"), "([^ ]+) (.*)")
 
-# Print the first ten rows of the column
-head(main_actors,10)
+```{r}
+# d. Split the Actor’s name into two columns:
+main_actors <- extract(harry_df, cast, c("FirstName", "LastName"), "([^ ]+) (.*)")
 
 ```
 
+```{r}
+# d. Print the first ten rows of the column
+head(main_actors,10)
+```
 
 
 
