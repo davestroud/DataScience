@@ -14,18 +14,36 @@ library("rvest")   # Great for grabbing and parsing HTML
 library("dplyr")   # Easy transformation of data.frames for summarization
 library("tidyr")   # Nice way to arrange data
 library("ggplot2") # Excellent for visuals
+library("reshape2")
 ```
 
 ```{r}
 # Pulling from online
 url <- 'http://www.imdb.com/title/tt1201607/fullcredits?ref_=tt_ql_1'
-webpage<- read_html(url)
+webpage <- read_html(url)
 ```
 
 ```{r}
-# Identify the HTML nodes
-hp_table <- html_nodes(webpage, '.loadlate' )
+webpage %>%
+  html_nodes(css = "table")
 ```
+
+```{r}
+cast = webpage %>%
+  html_nodes(".itemprop .itemprop") %>%
+  html_text()
+
+cast
+```
+
+
+
+
+
+
+
+
+
 
 
 
