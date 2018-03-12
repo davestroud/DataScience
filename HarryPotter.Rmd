@@ -36,6 +36,11 @@ cast = webpage %>%
 cast
 ```
 
+```{r}
+harry_df<-data.frame(cast)
+head(harry_df)
+
+```
 
 
 
