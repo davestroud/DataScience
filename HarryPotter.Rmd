@@ -36,14 +36,15 @@ cast
 ```
 
 ```{r}
+# Turn actors names into a dataframe
 harry_df<-data.frame(cast)
-head(harry_df)
 
 ```
 
 ```{r}
 main_actors <- extract(harry_df, cast, c("FirstName", "LastName"), "([^ ]+) (.*)")
 
+# Print the first ten rows of the column
 head(main_actors,10)
 
 ```
