@@ -14,7 +14,6 @@ library("rvest")   # Great for grabbing and parsing HTML
 library("dplyr")   # Easy transformation of data.frames for summarization
 library("tidyr")   # Nice way to arrange data
 library("ggplot2") # Excellent for visuals
-library("reshape2")
 ```
 
 ```{r}
