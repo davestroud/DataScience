@@ -2,7 +2,12 @@
 title: "HarryPotter"
 author: "David Stroud"
 date: "3/5/2018"
-output: html_document
+output:
+  prettydoc::html_pretty:
+    highlight: github
+    theme: architect
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -28,16 +33,16 @@ webpage <- read_html(url)
 # b. Scrape the table
 webpage %>%
   html_nodes(css = "table")
-```
 
-```{r}
 cast = webpage %>%
   html_nodes(".itemprop .itemprop") %>%
   html_text()
 ```
 
 
+
 ```{r}
+# c. Clean up the table
 # Turn actors names into a dataframe
 harry_df<-data.frame(cast)
 
@@ -51,7 +56,7 @@ main_actors <- extract(harry_df, cast, c("FirstName", "LastName"), "([^ ]+) (.*)
 ```
 
 ```{r}
-# d. Print the first ten rows of the column
+# e. Present the first 10 rows of the data.frame()
 head(main_actors,10)
 ```
 
