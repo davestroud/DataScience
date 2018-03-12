@@ -43,8 +43,13 @@ head(harry_df)
 ```
 
 ```{r}
-extract(harry_df, cast, c("FirstName", "LastName"), "([^ ]+) (.*)")
+main_actors <- extract(harry_df, cast, c("FirstName", "LastName"), "([^ ]+) (.*)")
+
+head(main_actors,10)
+
 ```
+
+
 
 
 
