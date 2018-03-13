@@ -81,15 +81,20 @@ players_df<-data.frame(players)
 head(players)
 ```
 
-
 ```{r}
-View(players$X4)
+# Check the data type of all columns. Convert relevant columns to numeric
+players[, c(2:15)] <- sapply(players[, c(2:15)], as.numeric, suppressWarnings(as.numeric(c("1", "2", "X"))))
 ```
 
+
 ```{r}
+# Check the data type of all columns again to confirm that they have changed
 sapply(players, class)
 ```
 
+```{r}
+View(players)
+```
 
 
 
