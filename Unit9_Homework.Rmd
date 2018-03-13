@@ -67,19 +67,28 @@ head(main_actors,10)
 
 #### a. On the ESPN website, there are statistics of each NBA player. Navigate to the San Antonio Spurs current statistics (likely http://www.espn.com/nba/team/stats/_/name/sa/san-antonio-spurs). You are interested in the Shooting Statistics table.
 
-
 ```{r}
+# b.Scrape the page with any R package that makes things easy for you. There are a few tables on the page, so make sure you are targeting specifically the Shooting Statistics table.
 url <- 'http://www.espn.com/nba/team/stats/_/name/sa/san-antonio-spurs'
 site <- read_html(url)
-coach_table <- html_nodes(site, 'table')
-coaches <- html_table(coach_table,fill=TRUE)[[2]]
-View(coaches)
+players_table <- html_nodes(site, 'table')
+players <- html_table(players_table,fill=TRUE)[[2]]
 ```
 
 
+```{r}
+players_df<-data.frame(players)
+head(players)
+```
 
 
+```{r}
+View(players$X4)
+```
 
+```{r}
+sapply(players, class)
+```
 
 
 
