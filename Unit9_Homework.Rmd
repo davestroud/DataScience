@@ -93,8 +93,31 @@ sapply(players, class)
 ```
 
 ```{r}
-View(players)
+ggplot(players, aes(x=players$X1, y=players$X4)) + 
+  geom_bar(stat="identity")
+
 ```
+
+
+
+
+
+
+
+
+
+```{r}
+# Remove first two rows of Shooting Statistics as they are irrelevant
+players <-players[-c(1, 2), ] 
+```
+
+
+```{r}
+head(players)
+```
+
+
+
 
 
 
