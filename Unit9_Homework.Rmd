@@ -72,44 +72,44 @@ head(main_actors,10)
 url <- 'http://www.espn.com/nba/team/stats/_/name/sa/san-antonio-spurs'
 site <- read_html(url)
 players_table <- html_nodes(site, 'table')
+# 2 allows you to select Shooting Statistics table
 players <- html_table(players_table,fill=TRUE)[[2]]
 ```
 
 
 ```{r}
 players_df<-data.frame(players)
-head(players)
+head(players_df)
 ```
 
 ```{r}
 # Check the data type of all columns. Convert relevant columns to numeric
-players[, c(2:15)] <- sapply(players[, c(2:15)], as.numeric, suppressWarnings(as.numeric(c("1", "2", "X"))))
+players_df[, c(2:15)] <- sapply(players_df[, c(2:15)], as.numeric, suppressWarnings(as.numeric(c("1", "2", "X"))))
 ```
 
 
 ```{r}
 # Check the data type of all columns again to confirm that they have changed
-sapply(players, class)
+sapply(players_df, class)
 ```
 
 ```{r}
 # Remove first two rows of Shooting Statistics as they are irrelevant
-players <-players[-c(1, 2), ] 
+players_df <-players_df[-c(1, 2), ] 
 ```
 
 
 
 ```{r}
+# d. Create a colorful bar chart that shows the Field Goals Percentage Per Game for each person
 library(ggthemes)
-ggplot(players, aes(x=players$X1, y=players$X4)) + 
+ggplot(players_df, aes(x=players_df$X1, y=players_df$X4)) + 
   geom_bar(stat="identity", fill="steelblue") +
   theme_economist() +
-  theme(axis.text.x=element_text(size=rel(0.7), angle=90)) +
+  theme(axis.text.x=element_text(size=rel(0.8), angle=90)) +
+  theme(plot.title = element_text(hjust = 0.5))+
   ggtitle("Field Goals Percentage Per Game") +
   labs(x="Players",y="FG %")
-
-
-
 ```
 
 
