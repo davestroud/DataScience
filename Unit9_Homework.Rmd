@@ -93,28 +93,25 @@ sapply(players, class)
 ```
 
 ```{r}
-ggplot(players, aes(x=players$X1, y=players$X4)) + 
-  geom_bar(stat="identity")
-
-```
-
-
-
-
-
-
-
-
-
-```{r}
 # Remove first two rows of Shooting Statistics as they are irrelevant
 players <-players[-c(1, 2), ] 
 ```
 
 
+
 ```{r}
-head(players)
+library(ggthemes)
+ggplot(players, aes(x=players$X1, y=players$X4)) + 
+  geom_bar(stat="identity", fill="steelblue") +
+  theme_economist() +
+  theme(axis.text.x=element_text(size=rel(0.7), angle=90)) +
+  ggtitle("Field Goals Percentage Per Game") +
+  labs(x="Players",y="FG %")
+
+
+
 ```
+
 
 
 
