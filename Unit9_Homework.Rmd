@@ -1,5 +1,5 @@
 ---
-title: "HarryPotter"
+title: "Unit9 Homework"
 author: "David Stroud"
 date: "3/5/2018"
 output:
@@ -23,8 +23,9 @@ library("ggplot2") # Excellent for visuals
 
 
 ### 1. Harry Potter Cast
+#### a. In the IMDB, there are listings of full cast members for movies. Navigate to http://www.imdb.com/title/tt1201607/fullcredits?ref_=tt_ql_1. Feel free to View Source to get a good idea of what the page looks like in code.
 ```{r}
-# a. Harry Potter Cast. Pulling data from website
+# b. Pulling data from website
 url <- 'http://www.imdb.com/title/tt1201607/fullcredits?ref_=tt_ql_1'
 webpage <- read_html(url)
 ```
@@ -33,12 +34,13 @@ webpage <- read_html(url)
 # b. Scrape the table
 webpage %>%
   html_nodes(css = "table")
+```
 
+```{r}
 cast = webpage %>%
   html_nodes(".itemprop .itemprop") %>%
   html_text()
 ```
-
 
 
 ```{r}
@@ -61,9 +63,18 @@ head(main_actors,10)
 ```
 
 
+### 2. SportsBall  
+
+#### a. On the ESPN website, there are statistics of each NBA player. Navigate to the San Antonio Spurs current statistics (likely http://www.espn.com/nba/team/stats/_/name/sa/san-antonio-spurs). You are interested in the Shooting Statistics table.
 
 
-
+```{r}
+url <- 'http://www.espn.com/nba/team/stats/_/name/sa/san-antonio-spurs'
+site <- read_html(url)
+coach_table <- html_nodes(site, 'table')
+coaches <- html_table(coach_table,fill=TRUE)[[2]]
+View(coaches)
+```
 
 
 
