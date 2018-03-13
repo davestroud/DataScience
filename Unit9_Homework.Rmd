@@ -19,6 +19,8 @@ library("rvest")   # Great for grabbing and parsing HTML
 library("dplyr")   # Easy transformation of data.frames for summarization
 library("tidyr")   # Nice way to arrange data
 library("ggplot2") # Excellent for visuals
+library("kableExtra")
+library("knitr")
 ```
 
 
@@ -42,24 +44,36 @@ cast = webpage %>%
   html_text()
 ```
 
+```{r}
+character = webpage %>%
+  html_nodes(".character") %>%
+  html_text()
+```
+
+```{r}
+# Remove \n and extra spaces from character
+character<- gsub("\n","", character)
+character <- gsub(" ", "", character)
+
+```
 
 ```{r}
 # c. Clean up the table
 # Turn actors names into a dataframe
-harry_df<-data.frame(cast)
-
+harry_df<-data.frame(cast, character)
+head(harry_df)
 ```
 
 
 ```{r}
 # d. Split the Actor’s name into two columns:
-main_actors <- extract(harry_df, cast, c("FirstName", "LastName"), "([^ ]+) (.*)")
+harry_df <- extract(harry_df, cast, c("FirstName", "LastName"), "([^ ]+) (.*)")
 
 ```
 
 ```{r}
 # e. Present the first 10 rows of the data.frame()
-head(main_actors,10)
+head(harry_df, 10)
 ```
 
 
@@ -80,24 +94,25 @@ players <- html_table(players_table,fill=TRUE)[[2]]
 ```{r}
 players_df<-data.frame(players)
 head(players_df)
+# note that all columns are characters
 ```
 
+
 ```{r}
-# Check the data type of all columns. Convert relevant columns to numeric
+# c. Check the data type of all columns. Convert relevant columns to numeric
 players_df[, c(2:15)] <- sapply(players_df[, c(2:15)], as.numeric, suppressWarnings(as.numeric(c("1", "2", "X"))))
 ```
 
 
 ```{r}
-# Check the data type of all columns again to confirm that they have changed
+# c. Check the data type of all columns again to confirm that they have changed
 sapply(players_df, class)
 ```
 
 ```{r}
-# Remove first two rows of Shooting Statistics as they are irrelevant
+# c. Remove first two rows of Shooting Statistics as they are irrelevant
 players_df <-players_df[-c(1, 2), ] 
 ```
-
 
 
 ```{r}
