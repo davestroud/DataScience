@@ -37,10 +37,14 @@ print(levels(mh2015_puf$LST))
 # c. Create a listing of the counts of all VA medical centers in the mainland US by state
     # Omit Alaska, Hawaii and US territories
     # Convert to a dataframe  
-count(mh2015_puf$LST)
+va <-count(mh2015_puf$LST)
 ```
 
 
+```{r}
+ # c. Convert to a dataframe 
+va_med_ctr <- as.data.frame(va)
+```
 
 
 
