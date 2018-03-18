@@ -18,6 +18,8 @@ knitr::opts_chunk$set(echo = TRUE)
     library(rebus)     
     # Eases DateTime manipulation
     library(lubridate)
+    # Easier way to use count
+    library(plyr)
 ```
 
 ### 1. Mental Health Clinics 
@@ -32,9 +34,12 @@ print(levels(mh2015_puf$LST))
 ```
 
 ```{r}
-# c. Create a listing of counts of all VA medical centers in the mainland US by state
+# c. Create a listing of the counts of all VA medical centers in the mainland US by state
+    # Omit Alaska, Hawaii and US territories
     # Convert to a dataframe  
+count(mh2015_puf$LST)
 ```
+
 
 
 
