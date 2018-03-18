@@ -31,6 +31,10 @@ load("/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Homework/Unit10/N-
 print(levels(mh2015_puf$LST))
 ```
 
+```{r}
+# c. Create a listing of counts of all VA medical centers in the mainland US by state
+    # Convert to a dataframe  
+```
 
 
 
