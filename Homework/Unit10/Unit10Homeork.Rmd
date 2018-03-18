@@ -28,7 +28,33 @@ load("/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Homework/Unit10/N-
 
 ```{r}
 # b.Create code which lists the State abbreviations without their counts
+print(levels(mh2015_puf$LST))
 ```
 
+
+
+
+
+
+
+
+
 ### 2. Cleaning and Bringing in New Features
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
