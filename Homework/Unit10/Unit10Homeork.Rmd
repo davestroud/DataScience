@@ -48,9 +48,17 @@ va_med_ctr <- as.data.frame(va)
 print(va_med_ctr)
 ```
 
+```{r}
+# d. Create a ggplot barchart of this filtered data set.
+```
 
 
 ### 2. Cleaning and Bringing in New Features
+
+```{r}
+statesize <-read.csv("statesize.csv")
+```
+
 
 
 
