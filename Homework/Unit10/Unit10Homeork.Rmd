@@ -43,6 +43,7 @@ print(va)
 ```
 
 
+
 ```{r}
  # c. Convert to a dataframe 
 va_med_ctr <- as.data.frame(va)
@@ -71,6 +72,9 @@ statesize <-read.csv("statesize.csv")
 str(statesize)
 ```
 
+```{r}
+tempdata <- merge(statesize, va_med_ctr, by="StateName", all=TRUE)
+```
 
 
 
