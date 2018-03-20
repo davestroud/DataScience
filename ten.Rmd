@@ -1,0 +1,27 @@
+---
+title: "ten"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2) # Data visualization
+library(readr) # CSV file I/O, e.g. the read_csv function
+library(dplyr) # Heavy use of this library
+library(tidyr)
+library(ggthemes) # for themes in ggplot
+library(knitr)
+library(kableExtra) # library to make the document more presentable
+```
+
+```{r}
+load("/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Homework/Unit10/N-MHSS-2015-DS0001-bndl-data-r/N-MHSS-2015-DS0001-data/N-MHSS-2015-DS0001-data-r.rda")
+```
+
+```{r}
+va <- data.frame(lapply(mh2015_puf, as.character), stringsAsFactors = FALSE)
+```
+
