@@ -30,18 +30,24 @@ load("/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Homework/Unit10/N-
 
 ```{r}
 # b.Create code which lists the State abbreviations without their counts
-print(levels(mh2015_puf$LST))
+va<- (levels(mh2015_puf$LST))
+
 ```
 
 
 ```{r}
 # c. Create a listing of the counts of all VA medical centers in the mainland US by state
 va <-count(mh2015_puf$LST)
+print(va)
+
+```
+
+
+```{r}
 # Rename x to statename for future merging
 va <- rename(va, c("x"= "StateName"))
 print(va)
 ```
-
 
 
 ```{r}
@@ -49,6 +55,14 @@ print(va)
 va_med_ctr <- as.data.frame(va)
 print(va_med_ctr)
 ```
+
+```{r}
+va_med_ctr = va_med_ctr[-c(1,13,14,42,50), ]
+print(va_med_ctr)
+```
+
+
+
 
 ```{r}
 # d. Create a ggplot barchart of this filtered data set.
@@ -73,9 +87,13 @@ str(statesize)
 ```
 
 ```{r}
+# this doesnt work
 tempdata <- merge(statesize, va_med_ctr, by="StateName", all=TRUE)
 ```
 
+```{r}
+# c. Calculate a new variable in your combined data.frame() which indicates the VA hospitals per thousand square miles
+```
 
 
 
