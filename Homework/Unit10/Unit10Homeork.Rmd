@@ -31,6 +31,7 @@ load("/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Homework/Unit10/N-
 ```{r}
 # b.Create code which lists the State abbreviations without their counts
 va<- (levels(mh2015_puf$LST))
+head(va)
 
 ```
 
@@ -38,40 +39,33 @@ va<- (levels(mh2015_puf$LST))
 ```{r}
 # c. Create a listing of the counts of all VA medical centers in the mainland US by state
 va <-count(mh2015_puf$LST)
-print(va)
+head(va)
 
 ```
 
-
 ```{r}
-# Rename x to statename for future merging
-va <- rename(va, c("x"= "StateName"))
-print(va)
+# Remove all VA centers not on mainland
+va_med_ctr = va[-c(1,13,14,42,50),]
+str(va_med_ctr)
 ```
 
 
 ```{r}
  # c. Convert to a dataframe 
 va_med_ctr <- as.data.frame(va)
-print(va_med_ctr)
+str(va_med_ctr)
 ```
-
-```{r}
-va_med_ctr = va_med_ctr[-c(1,13,14,42,50), ]
-print(va_med_ctr)
-```
-
 
 
 
 ```{r}
 # d. Create a ggplot barchart of this filtered data set.
 library(ggthemes)
-ggplot(data=va_med_ctr, aes(x=StateName, y=freq)) +
+ggplot(data=va_med_ctr, aes(x=x, y=freq)) +
   geom_bar(stat="identity", fill="steelblue")+
   theme_economist() + 
   scale_color_economist()+
-  theme(axis.text.x=element_text(size=rel(0.8), angle=90)) +
+  theme(axis.text.x=element_text(size=rel(0.7), angle=90)) +
   ggtitle("VA Centers in Mainland US") +
   theme(plot.title = element_text(hjust = 0.5))+
   labs(x="State Name",y="Number of VA Facilities")
@@ -86,9 +80,21 @@ statesize <-read.csv("statesize.csv")
 str(statesize)
 ```
 
+
+```{r}
+va_med_ctr <- rename(va_med_ctr, c("x"= "Abbrev"))
+head(va_med_ctr)
+```
+
+```{r}
+both <- right_join(va_med_ctr,statesize, by="Abbrev")
+```
+
+
+
 ```{r}
 # this doesnt work
-tempdata <- merge(statesize, va_med_ctr, by="StateName", all=TRUE)
+tempdata <- merge(va_med_ctr, statesize, by="Abbrev", all.y=TRUE)
 ```
 
 ```{r}

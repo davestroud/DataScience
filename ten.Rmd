@@ -22,6 +22,9 @@ load("/Users/davidstroud/Dropbox/Data_Science1/DataScienceSMU/Homework/Unit10/N-
 ```
 
 ```{r}
-va <- data.frame(lapply(mh2015_puf, as.character), stringsAsFactors = FALSE)
+# a. Read statesize.csv into your R environment
+statesize <-read.csv("statesize.csv")
+str(statesize)
 ```
+
 
