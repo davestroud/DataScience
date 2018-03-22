@@ -36,18 +36,12 @@ va<- (levels(mh2015_puf$LST))
 head(va)
 ```
 
+
 ```{r}
 # c. Create a listing of the counts of all VA medical centers in the mainland US by state
 va <-count(mh2015_puf,LST)
+va = va[-c(4,13,14,42,50),]
 head(va)
-```
-
-
-
-```{r}
-# Remove all VA centers not on mainland
-va_med_ctr = va[-c(1,13,14,42,50),]
-str(va_med_ctr)
 ```
 
 
@@ -61,7 +55,7 @@ str(va_med_ctr)
 
 
 ```{r}
-ggplot(data=va_med_ctr, aes(x=x, y=freq)) +
+ggplot(data=va_med_ctr, aes(x=LST, y=n)) +
   geom_bar(stat="identity", fill="steelblue")+
   theme_economist() + 
   scale_color_economist()+
@@ -82,17 +76,25 @@ str(statesize)
 
 
 ```{r}
-va_med_ctr <- rename(va_med_ctr, c("x"= "Abbrev"))
-head(va_med_ctr)
+va_med_ctr <- rename(va_med_ctr, Abbrev = LST)
 ```
 
 
 ```{r}
-tempdata <- merge(va_med_ctr, statesize, by="Abbrev", all.y=TRUE)
+va_state <- full_join(va_med_ctr, statesize, by="Abbrev")
 ```
+
 
 ```{r}
 # c. Calculate a new variable in your combined data.frame() which indicates the VA hospitals per thousand square miles
+
+
+
+```
+
+
+```{r}
+statesize_two <-read.csv("statesize_two.csv")
 ```
 
 
