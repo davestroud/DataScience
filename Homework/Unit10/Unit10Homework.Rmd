@@ -19,7 +19,9 @@ library(rebus)
 # Eases DateTime manipulation
 library(lubridate)
 # Easier way to use count
-library(plyr)
+library(dplyr)
+# for themes in ggplot
+library(ggthemes) 
 ```
 
 ### 1. Mental Health Clinics 
@@ -34,11 +36,13 @@ va<- (levels(mh2015_puf$LST))
 head(va)
 ```
 
-
 ```{r}
-va <-count(mh2015_puf$LST)
+# c. Create a listing of the counts of all VA medical centers in the mainland US by state
+va <-count(mh2015_puf,LST)
 head(va)
 ```
+
+
 
 ```{r}
 # Remove all VA centers not on mainland
@@ -47,9 +51,16 @@ str(va_med_ctr)
 ```
 
 
+```{r}
+# c. Convert to a dataframe 
+va_med_ctr <- as.data.frame(va)
+str(va_med_ctr)
+```
 
-```{r}va_med_ctr <- rename(va_med_ctr, c("x"= "Abbrev"))
-head(va_med_ctr)
+
+
+
+```{r}
 ggplot(data=va_med_ctr, aes(x=x, y=freq)) +
   geom_bar(stat="identity", fill="steelblue")+
   theme_economist() + 
@@ -59,6 +70,8 @@ ggplot(data=va_med_ctr, aes(x=x, y=freq)) +
   theme(plot.title = element_text(hjust = 0.5))+
   labs(x="State Name",y="Number of VA Facilities")
 ```
+
+
 
 ### 2. Cleaning and Bringing in New Features
 ```{r}
