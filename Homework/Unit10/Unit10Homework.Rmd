@@ -93,9 +93,19 @@ statesize_two <-read.csv("statesize_two.csv")
 
 ```{r}
 # c. Calculate a new variable in your combined data.frame() which indicates the VA hospitals per thousand square miles
-statesize_two <-statesize_two %>% select(StateName,SqMiles, Facility) %>% mutate(VA_Norm = SqMiles/Facility)
+statesize_two <-statesize_two %>% select(StateName,SqMiles, Facility) %>% mutate(VA_Norm = Facility/SqMiles)
 ```
 
+```{r}
+ggplot(data=statesize_two, aes(x=StateName, y=VA_Norm)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  theme_economist() + 
+  scale_color_economist()+
+  theme(axis.text.x=element_text(size=rel(0.8), angle=90)) +
+  ggtitle("VA Centers in Mainland US") +
+  theme(plot.title = element_text(hjust = 0.5))+
+  labs(x="State Name",y="Number of VA Facilities")
+```
 
 
 
