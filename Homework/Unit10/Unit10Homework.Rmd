@@ -86,15 +86,16 @@ va_state <- full_join(va_med_ctr, statesize, by="Abbrev")
 
 
 ```{r}
-# c. Calculate a new variable in your combined data.frame() which indicates the VA hospitals per thousand square miles
-
-
-
+# Created a new csv file that holds merged data
+statesize_two <-read.csv("statesize_two.csv")
 ```
 
 
 ```{r}
-statesize_two <-read.csv("statesize_two.csv")
+# c. Calculate a new variable in your combined data.frame() which indicates the VA hospitals per thousand square miles
+statesize_two <-statesize_two %>% select(StateName,SqMiles, Facility) %>% mutate(VA_Norm = SqMiles/Facility)
 ```
+
+
 
 
