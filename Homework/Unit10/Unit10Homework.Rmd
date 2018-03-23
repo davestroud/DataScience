@@ -1,5 +1,5 @@
 ---
-title: "Unit10Homework"
+title: "David Stroud ~ Unit10Homework"
 output: html_document
 ---
 
@@ -97,6 +97,8 @@ statesize_two <-statesize_two %>% select(StateName,SqMiles, Facility) %>% mutate
 ```
 
 ```{r}
+# d.Create another ggplot which considers the VAs per square thousand miles,
+# rather than just frequency
 ggplot(data=statesize_two, aes(x=StateName, y=VA_Norm)) +
   geom_bar(stat="identity", fill="steelblue")+
   theme_economist() + 
@@ -107,5 +109,10 @@ ggplot(data=statesize_two, aes(x=StateName, y=VA_Norm)) +
   labs(x="State Name",y="VA offices per 1,000 sq miles")
 ```
 
-
+e. What patterns do you see? The smaller states tend to have a higher concentraion of facilities. 
+  It is interesting that Montana is low, lower populated state, but large in square miles. It makes   sense that Rhode Island represents the highest amount of facilites per square miles due to its
+  size. I think that we need to add population into the mix to determine where to place new 
+  facilities.  Montana, even though not well represented, may not need any more facilities due 
+  to a lower population. Based on the information in this report, I would say add more facilties
+  in Alaska. If we considered population, I may advise New York or California. 
 
