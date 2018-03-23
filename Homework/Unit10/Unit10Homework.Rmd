@@ -102,9 +102,9 @@ ggplot(data=statesize_two, aes(x=StateName, y=VA_Norm)) +
   theme_economist() + 
   scale_color_economist()+
   theme(axis.text.x=element_text(size=rel(0.8), angle=90)) +
-  ggtitle("VA Centers in Mainland US") +
+  ggtitle("VA Centers in US (per 1,000 sq miles)") +
   theme(plot.title = element_text(hjust = 0.5))+
-  labs(x="State Name",y="Number of VA Facilities")
+  labs(x="State Name",y="VA offices per 1,000 sq miles")
 ```
 
 
