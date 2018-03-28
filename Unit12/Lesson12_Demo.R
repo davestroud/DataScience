@@ -90,4 +90,6 @@ lines(holtfit$mean, col="red")
 
 # Finding AICc
 holtfit$model
+# We added this during the video ~ used to compare models
+fit$model
 
