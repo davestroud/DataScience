@@ -1,0 +1,51 @@
+StateName,SqMiles,Abbrev,Region,Facility
+Alabama,50750,AL,South,197
+Alaska,570374,AK,West,103
+Arizona,113642,AZ,West,259
+Arkansas,52075,AR,South,386
+California,155973,CA,West,913
+Colorado,103730,CO,West,203
+Connecticut,4845,CT,Northeast,241
+Delaware,1955,DE,South,38
+Florida,53997,FL,South,31
+Georgia,57919,GA,South,523
+Hawaii,6423,HI,West,236
+Idaho,82751,ID,West,166
+Illinois,55593,IL,Midwest,199
+Indiana,35870,IN,Midwest,447
+Iowa,55875,IA,Midwest,304
+Kansas,81823,KS,Midwest,130
+Kentucky,39732,KY,South,218
+Louisiana,43566,LA,South,186
+Maine,30865,ME,Northeast,340
+Maryland,9775,MD,South,305
+Massachusetts,7838,MA,Northeast,217
+Michigan,56539,MI,Midwest,375
+Minnesota,79617,MN,Midwest,243
+Mississippi,46914,MS,South,238
+Missouri,68898,MO,Midwest,210
+Montana,145556,MT,West,97
+Nebraska,76878,NE,Midwest,342
+Nevada,109806,NV,West,33
+New Hampshire,8969,NH,Northeast,122
+New Jersey,7419,NJ,Northeast,67
+New Mexico,121365,NM,West,335
+New York,47224,NY,Northeast,77
+North Carolina,48718,NC,South,52
+North Dakota,68994,ND,Midwest,985
+Ohio,40953,OH,Midwest,589
+Oklahoma,68679,OK,South,150
+Oregon,96003,OR,West,185
+Pennsylvania,44820,PA,Northeast,612
+Rhode Island,1045,RI,Northeast,64
+South Carolina,30111,SC,South,132
+South Dakota,75898,SD,Midwest,54
+Tennessee,41220,TN,South,314
+Texas,261914,TX,South,382
+Utah,82168,UT,West,111
+Vermont,9249,VT,Northeast,289
+Virginia,39598,VA,South,76
+Washington,66582,WA,West,266
+West Virginia,24087,WV,South,451
+Wisconsin,54314,WI,Midwest,124
+,,,,54
