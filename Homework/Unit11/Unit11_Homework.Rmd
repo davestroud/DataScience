@@ -10,8 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(dygraphs)
 library(forecast)
-library(tidyverse)
-library(xts)
 ```
 
 
@@ -23,8 +21,13 @@ head(EuStockMarkets)
 
 ```{r}
 # b. Create a rudimentary plot of the DAX
-plot(EuStockMarkets[,"DAX"])
+plot(EuStockMarkets[,"DAX"], col="blue")
+abline(v=1997, col="red")
+abline(v=1998, col="red")
 ```
 
+```{r}
+# c. Decompose the time series into its components 
+```
 
 

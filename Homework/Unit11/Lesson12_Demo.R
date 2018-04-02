@@ -3,8 +3,6 @@
 #Live Session 12 demo
 #install.packages("dygraphs")
 library("dygraphs")
-
-install.packages("forecast")
 library("forecast")
 
 #read, convert and display births timeseries dataset
