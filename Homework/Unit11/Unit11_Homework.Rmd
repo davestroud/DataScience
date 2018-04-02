@@ -7,3 +7,24 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(dygraphs)
+library(forecast)
+library(tidyverse)
+library(xts)
+```
+
+
+### 1. Warm Up: Brief Financial Data (20%)
+```{r}
+# a. Summary of Sample EU Stock Market data set
+head(EuStockMarkets)
+```
+
+```{r}
+# b. Create a rudimentary plot of the DAX
+plot(EuStockMarkets[,"DAX"])
+```
+
+
+
