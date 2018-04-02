@@ -28,6 +28,8 @@ abline(v=1998, col="red")
 
 ```{r}
 # c. Decompose the time series into its components 
+EU_DAX <- decompose(EuStockMarkets[,"DAX"], type = "multiplicative")
+plot(EU_DAX, col="blue")
 ```
 
 
