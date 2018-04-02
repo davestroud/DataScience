@@ -46,6 +46,11 @@ ts <- window(maxtemp, start=1990)
 autoplot(ts, xlab="Year", ylab="Temperature (Celsius)")
 ```
 
+```{r}
+# c.	Utilize SES to predict the next five years of maximum temperatures in Melbourne. 
+fit<-ses(ts, h=5)
+fit
+```
 
 
 
