@@ -13,7 +13,7 @@ library(forecast)
 ```
 
 
-### 1. Warm Up: Brief Financial Data (20%)
+## 1. Warm Up: Brief Financial Data
 ```{r}
 # a. Summary of Sample EU Stock Market data set
 head(EuStockMarkets)
@@ -31,5 +31,32 @@ abline(v=1998, col="red")
 EU_DAX <- decompose(EuStockMarkets[,"DAX"], type = "multiplicative")
 plot(EU_DAX, col="blue")
 ```
+
+## 2.	Temperature Data
+```{r}
+# a. Use the maxtemp dataset granted by loading fpp2
+library(fpp2)
+library(dygraphs)
+library(xts)
+```
+
+```{r}
+# b. We are only concerned with information after 1990
+ts <- window(maxtemp, start=1990)
+autoplot(ts, xlab="Year", ylab="Temperature (Celsius)")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
