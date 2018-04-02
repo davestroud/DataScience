@@ -1,0 +1,99 @@
+---
+title: "NYT CTR"
+author: "David Stroud"
+date: "3/13/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+fileLocation <- "http://stat.columbia.edu/~rachel/datasets/nyt1.csv"
+data1 <- read.csv(url(fileLocation))
+```
+
+```{r}
+head(data1)
+```
+
+
+```{r}
+str(data1) # str stands for 'structure'
+```
+
+
+```{r}
+summary(data1)
+```
+
+```{r}
+hist(data1$Age, main="", xlab="Age")
+```
+
+
+```{r}
+range(data1$Age)
+```
+
+```{r}
+# distribution of the Impressions column
+hist(data1$Impressions, main="", xlab="# of Impressions")
+```
+
+```{r}
+range(data1$Impressions)
+```
+
+
+```{r}
+# distribution of the Clicks column
+hist(data1$Clicks, main="", xlab="# of Clicks")
+```
+
+```{r}
+range(data1$Clicks)
+```
+
+
+
+```{r}
+data1$Age_Group <- cut(data1$Age, c(-Inf, 18, 24, 34, 44, 54, 64, Inf))
+levels(data1$Age_Group) <- c("<18", "18-24", "25-34", "35-44", "45-54", "55-64", "65+")
+```
+
+```{r}
+head(data1)
+```
+
+```{r}
+d1 <- subset(data1, Impressions>0)
+```
+
+```{r}
+d1$CTR <- d1$Clicks/d1$Impressions
+
+head(d1)
+```
+
+
+```{r}
+library(ggplot2) # used for visualizations
+ggplot(subset(d1, Impressions>0), aes(x=Impressions, fill=Age_Group))+
+    geom_histogram(binwidth=1)
+```
+
+
+
+```{r}
+ggplot(subset(d1, CTR>0), aes(x=CTR, fill=Age_Group))+
+    labs(title="Click-through rate by age group (05/01/2012)")+
+    geom_histogram(binwidth=.075)+ 
+    
+```
+
+
+
+

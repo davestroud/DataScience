@@ -31,6 +31,7 @@ for (i in 1L:10) {
 ```
 
 ```{r}
+# Reads out 10 lines of Moby Dick, skips to line 549
 moby_dick_chap1
 ```
 
