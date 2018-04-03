@@ -30,3 +30,11 @@ volest2 <- Vol(30,SNPret)
 volest3 <- Vol(100,SNPret)
 
 # Plot the results, overlaying the volatility curves on the data, just as was done in the S&P example.
+plot(volest,type = "l")
+
+
+
+
+
+
+
