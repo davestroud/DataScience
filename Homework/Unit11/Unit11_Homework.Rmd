@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(dygraphs)
 library(forecast)
+library(xts)
+library(readr)
 ```
 
 
@@ -52,6 +54,17 @@ fit<-ses(ts, h=5)
 fit
 ```
 
+## 3.	The Wands Choose the Wizard 
+```{r}
+# a. Read in both Unit11TimeSeries_Ollivander and _Gregorovitch.csv as two different data frames
+Gregorovitch <- read_csv("Unit11TimeSeries_Gregorovitch.csv")
+Ollivander <- read.csv("Unit11TimeSeries_Ollivander.csv")
+```
+
+```{r}
+# Convert the date-like variable to an actual Date class
+
+```
 
 
 
