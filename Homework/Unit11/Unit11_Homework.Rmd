@@ -12,6 +12,7 @@ library(dygraphs)
 library(forecast)
 library(xts)
 library(readr)
+library(zoo)
 ```
 
 
@@ -57,21 +58,23 @@ fit
 ## 3.	The Wands Choose the Wizard 
 ```{r}
 # a. Read in both Unit11TimeSeries_Ollivander and _Gregorovitch.csv as two different data frames
-Gregorovitch <- read_csv("Unit11TimeSeries_Gregorovitch.csv")
-Ollivander <- read.csv("Unit11TimeSeries_Ollivander.csv")
+Ollivander <- read.csv("Unit11TimeSeries_Ollivander.csv", header = FALSE)
+Gregorovitch <- read.csv("Unit11TimeSeries_Gregorovitch.csv", header = FALSE)
 ```
+
+
 
 ```{r}
 # Convert the date-like variable to an actual Date class
-
+dates <- as.Date(Ollivander$V1,"%m/%d/%Y" )
 ```
 
 
+dates <- as.Date(strDates, "%m/%d/%Y")
 
 
 
-
-
+xts(Ollivander, order.by = as.Date(rownames(Ollivander), "%m/%d/%Y"))
 
 
 
