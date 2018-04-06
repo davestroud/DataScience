@@ -13,6 +13,7 @@ library(forecast)
 library(xts)
 library(readr)
 library(zoo)
+library(tidyverse)
 ```
 
 
@@ -62,19 +63,25 @@ Ollivander <- read.csv("Unit11TimeSeries_Ollivander.csv", header = FALSE)
 Gregorovitch <- read.csv("Unit11TimeSeries_Gregorovitch.csv", header = FALSE)
 ```
 
-
-
 ```{r}
-# Convert the date-like variable to an actual Date class
-dates <- as.Date(Ollivander$V1,"%m/%d/%Y" )
+Ollivander <- ts(Ollivander, frequency = 1, start = c(1970,1))
+Gregorovitch <- ts(Gregorovitch, frequency = 1, start = c(1970,1))
 ```
 
 
-dates <- as.Date(strDates, "%m/%d/%Y")
+```{r}
+plot(Ollivander[,"V2"], col="blue")
+```
+
+
+```{r}
+plot(Gregorovitch[,"V2"], col="red")
+```
 
 
 
-xts(Ollivander, order.by = as.Date(rownames(Ollivander), "%m/%d/%Y"))
+
+
 
 
 

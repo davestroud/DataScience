@@ -49,12 +49,6 @@ dygraph(birthsSubset, main="Birth rates", ylab="Births", xlab="Year") %>%
   dyShading(from = "1959-1-1", to = "1960-1-1", color = "#CCEBD6")
 
 
-
-
-
-
-
-
 # a.	Using the maxtemp dataset granted by loading fpp2, there are maximum annual temperature data in Celsius.  For more information, use help(maxtemp).  To see what you’re looking at, execute the command in ‘Examples’ in the help document.
 # b.	We are only concerned with information after 1990.  Please eliminate unwanted information or subset information we care about.
 # c.	Utilize SES to predict the next five years of maximum temperatures in Melbourne.  Plot this information, including the prior information and the forecast.  Add the predicted value line across 1990 present as a separate line, preferably blue.  So, to review, you should have your fit, the predicted value line overlaying it, and a forecast through 2021, all on one axis. Find the AICc of this fitted model.  You will use that information later.
