@@ -83,6 +83,10 @@ lines(holtfit$mean, col="red")
 holtfit$model
 ```
 
+### e.	Compare the AICc of the ses() and holt() models.  Which model is better here?
+        The AICc of the ses model is better than the holt model.  141.5302 for SES model vs 
+        144.5819 for the Holt model
+
 
 ## 3.	The Wands Choose the Wizard 
 ```{r}
