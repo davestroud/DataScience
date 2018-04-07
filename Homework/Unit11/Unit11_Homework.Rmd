@@ -26,9 +26,11 @@ head(EuStockMarkets)
 
 ```{r}
 # b. Create a rudimentary plot of the DAX
-plot(EuStockMarkets[,"DAX"], col="blue")
+# add a vertical red line to your plot which divides pre-1997 and post-1997 information
+plot(EuStockMarkets[,"DAX"], col="blue", xlab="Years", ylab="Index Value")
 abline(v=1997, col="red")
-abline(v=1998, col="red")
+title(main="EU Stock Markets ~ DAX", col.main="red", font.main=4)
+
 ```
 
 ```{r}
