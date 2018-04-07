@@ -37,7 +37,7 @@ title(main="EU Stock Markets ~ DAX", col.main="red", font.main=4)
 # c. Decompose the time series into its components 
 EU_DAX <- decompose(EuStockMarkets[,"DAX"], type = "multiplicative")
 plot(EU_DAX, col="blue")
-abline(v=1997, col="red")
+
 ```
 
 ## 2.	Temperature Data
@@ -53,10 +53,27 @@ autoplot(ts, xlab="Year", ylab="Temperature (Celsius)")
 ```
 
 ```{r}
-# c.	Utilize SES, Simple Exponential Smoothing, to predict the next five years of maximum temperatures in Melbourne. 
+# c.	Utilize SES, Simple Exponential Smoothing, to predict the next five years of maximum temperatures in Melbourne.
 fit<-ses(ts, h=5)
-fit
+
+# Comparing Forecast Fit
+plot(fit,ylab="Temperature, Celsius", xlab= "Year", main="Comparing forecast fit")
+lines(fitted(fit), col="blue")
+lines(fit$mean, col="blue", type="o")
 ```
+
+```{r}
+# d. Use a damped Holt’s linear trend to also predict out five years
+holtfit<- holt(ts, initial="optimal", h=5, damped = TRUE)
+
+plot(holtfit, ylab="Temperature, Celsius", xlab= "Year", main="Comparing forecast fit")
+lines(fitted(holtfit), col="blue", type="o")
+lines(holtfit$mean, col="red")
+```
+
+
+
+
 
 ## 3.	The Wands Choose the Wizard 
 ```{r}
