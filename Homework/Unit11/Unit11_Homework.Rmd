@@ -1,5 +1,5 @@
 ---
-title: "Unit11_Homework"
+title: "Unit11_Homework ~ David Stroud"
 output: html_document
 ---
 
@@ -37,6 +37,7 @@ title(main="EU Stock Markets ~ DAX", col.main="red", font.main=4)
 # c. Decompose the time series into its components 
 EU_DAX <- decompose(EuStockMarkets[,"DAX"], type = "multiplicative")
 plot(EU_DAX, col="blue")
+abline(v=1997, col="red")
 ```
 
 ## 2.	Temperature Data
