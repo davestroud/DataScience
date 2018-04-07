@@ -8,6 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+# Load required libraries
 library(dygraphs)
 library(forecast)
 library(xts)
@@ -40,8 +41,6 @@ plot(EU_DAX, col="blue")
 ```{r}
 # a. Use the maxtemp dataset granted by loading fpp2
 library(fpp2)
-library(dygraphs)
-library(xts)
 ```
 
 ```{r}
