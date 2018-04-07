@@ -99,24 +99,16 @@ Gregorovitch <- read.csv("Unit11TimeSeries_Gregorovitch.csv", header = FALSE)
 # c. Make each frame an xts object
 Ollivander <- ts(Ollivander, frequency = 1, start = c(1970,1))
 Gregorovitch <- ts(Gregorovitch, frequency = 1, start = c(1970,1))
+
 ```
 
-
 ```{r}
-Wands  <- cbind(Ollivander, Gregorovitch)
-dygraph(Wands)
-```
-
-
-
-
-```{r}
-plot(Ollivander[,"V2"], col="blue")
-```
-
-
-```{r}
-plot(Gregorovitch[,"V2"], col="red")
+# d.	Bind the two xts objects together and create a dygraph from it
+dygraph(Wands) %>%
+  dySeries("Ollivander.V2", label = "Olli") %>%
+  dySeries("Gregorovitch.V2", label = "Greg") %>%
+  dyOptions(stackedGraph = TRUE) %>%
+  dyRangeSelector(height = 20)
 ```
 
 
