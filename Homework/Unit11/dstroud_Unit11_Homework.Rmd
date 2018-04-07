@@ -104,7 +104,8 @@ Gregorovitch <- ts(Gregorovitch, frequency = 1, start = c(1970,1))
 
 ```{r}
 # d.	Bind the two xts objects together and create a dygraph from it
-dygraph(Wands, main = "The Wands Choose the Wizard ") %>%
+Wands  <- cbind(Ollivander, Gregorovitch)
+dygraph(Wands) %>%
   dySeries("Ollivander.V2", label = "Ollivander") %>%
   dySeries("Gregorovitch.V2", label = "Gregorovitch") %>%
   dyOptions(stackedGraph = TRUE) %>%
