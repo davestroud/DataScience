@@ -37,7 +37,6 @@ title(main="EU Stock Markets ~ DAX", col.main="red", font.main=4)
 # c. Decompose the time series into its components 
 EU_DAX <- decompose(EuStockMarkets[,"DAX"], type = "multiplicative")
 plot(EU_DAX, col="blue")
-
 ```
 
 ## 2.	Temperature Data
@@ -63,6 +62,13 @@ lines(fit$mean, col="blue", type="o")
 ```
 
 ```{r}
+# c. Find the AICc of this fitted model
+fit$model
+```
+
+
+
+```{r}
 # d. Use a damped Holt’s linear trend to also predict out five years
 holtfit<- holt(ts, initial="optimal", h=5, damped = TRUE)
 
@@ -73,6 +79,9 @@ lines(holtfit$mean, col="red")
 
 
 
+```{r}
+holtfit$model
+```
 
 
 ## 3.	The Wands Choose the Wizard 
